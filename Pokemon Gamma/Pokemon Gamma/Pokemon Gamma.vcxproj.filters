@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Fichiers sources">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Fichiers de ressources">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\engine">
+      <UniqueIdentifier>{b31c23b3-d308-46b0-b186-c1f143b0c2d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\pokemon">
+      <UniqueIdentifier>{0cbcf7c8-55f2-4465-9f24-82b66653e42f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\engine">
+      <UniqueIdentifier>{a13fa469-a7a5-4a00-8aef-3b7b0f56f82e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\pokemon">
+      <UniqueIdentifier>{64fa40d3-a677-4b0c-977a-4b416c2b8894}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\pokemon\attacks.cpp">
+      <Filter>Fichiers sources\pokemon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\pokemon\effects.cpp">
+      <Filter>Fichiers sources\pokemon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\pokemon\exp.cpp">
+      <Filter>Fichiers sources\pokemon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\pokemon\pokemon.cpp">
+      <Filter>Fichiers sources\pokemon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\pokemon\pokedex.cpp">
+      <Filter>Fichiers sources\pokemon</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\pokemon\exp.h">
+      <Filter>Fichiers d%27en-tête\pokemon</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
