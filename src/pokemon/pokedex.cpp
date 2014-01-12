@@ -10,21 +10,23 @@ namespace Pokemon
 
 	class Pokemon_Data_Entry
 	{
-		std::string name;
-		TypePokemon type1;
-		TypePokemon type2;
-		unsigned int capture_rate;
+		std::string name;														//Nom de l'espèce
+		TypePokemon type1;														//Type primaire de l'espèce
+		TypePokemon type2;														//Type secondaire de l'espèce
 		
-		unsigned int hp;
+		
+		unsigned int hp;														//Stats de base du Pokemon
 		unsigned int atk;
 		unsigned int dfe;
 		unsigned int spd;
 		unsigned int ats;
 		unsigned int dfs;
 
-		Attaque *skills;
+		std::map<unsigned int, Attaque*> skills_table;							//Attaques que le pokemon va apprendre 
+		std::map<unsigned int, Attaque*> skills_allows;							//Attaques que le pokemon peut apprendre (CT,CS)
 
-		unsigned int probability_female;
+		unsigned int probability_female;										//Probabilité que ce pokemon soit une femelle
+		unsigned int capture_rate;												//Probabilité de capturer ce pokemon avec une pokeball
 	};
 }
 #endif
