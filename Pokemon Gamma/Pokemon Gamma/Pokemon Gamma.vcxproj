@@ -44,9 +44,11 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>C:\Users\Léo\Documents\GitHub\PokemonGamma\Pokemon Gamma\Pokemon Gamma\sfml\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\Users\Léo\Documents\GitHub\PokemonGamma\Pokemon Gamma\Pokemon Gamma\sfml\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -76,6 +78,119 @@
     <ClInclude Include="attacks.h" />
     <ClInclude Include="pokemon.h" />
     <ClInclude Include="pokedex.hpp" />
+    <ClInclude Include="sfml\include\Audio.hpp" />
+    <ClInclude Include="sfml\include\Audio\Export.hpp" />
+    <ClInclude Include="sfml\include\Audio\Listener.hpp" />
+    <ClInclude Include="sfml\include\Audio\Music.hpp" />
+    <ClInclude Include="sfml\include\Audio\Sound.hpp" />
+    <ClInclude Include="sfml\include\Audio\SoundBuffer.hpp" />
+    <ClInclude Include="sfml\include\Audio\SoundBufferRecorder.hpp" />
+    <ClInclude Include="sfml\include\Audio\SoundRecorder.hpp" />
+    <ClInclude Include="sfml\include\Audio\SoundSource.hpp" />
+    <ClInclude Include="sfml\include\Audio\SoundStream.hpp" />
+    <ClInclude Include="sfml\include\Config.hpp" />
+    <ClInclude Include="sfml\include\Graphics.hpp" />
+    <ClInclude Include="sfml\include\Graphics\BlendMode.hpp" />
+    <ClInclude Include="sfml\include\Graphics\CircleShape.hpp" />
+    <ClInclude Include="sfml\include\Graphics\Color.hpp" />
+    <ClInclude Include="sfml\include\Graphics\ConvexShape.hpp" />
+    <ClInclude Include="sfml\include\Graphics\Drawable.hpp" />
+    <ClInclude Include="sfml\include\Graphics\Export.hpp" />
+    <ClInclude Include="sfml\include\Graphics\Font.hpp" />
+    <ClInclude Include="sfml\include\Graphics\Glyph.hpp" />
+    <ClInclude Include="sfml\include\Graphics\Image.hpp" />
+    <ClInclude Include="sfml\include\Graphics\PrimitiveType.hpp" />
+    <ClInclude Include="sfml\include\Graphics\Rect.hpp" />
+    <ClInclude Include="sfml\include\Graphics\RectangleShape.hpp" />
+    <ClInclude Include="sfml\include\Graphics\RenderStates.hpp" />
+    <ClInclude Include="sfml\include\Graphics\RenderTarget.hpp" />
+    <ClInclude Include="sfml\include\Graphics\RenderTexture.hpp" />
+    <ClInclude Include="sfml\include\Graphics\RenderWindow.hpp" />
+    <ClInclude Include="sfml\include\Graphics\Shader.hpp" />
+    <ClInclude Include="sfml\include\Graphics\Shape.hpp" />
+    <ClInclude Include="sfml\include\Graphics\Sprite.hpp" />
+    <ClInclude Include="sfml\include\Graphics\Text.hpp" />
+    <ClInclude Include="sfml\include\Graphics\Texture.hpp" />
+    <ClInclude Include="sfml\include\Graphics\Transform.hpp" />
+    <ClInclude Include="sfml\include\Graphics\Transformable.hpp" />
+    <ClInclude Include="sfml\include\Graphics\Vertex.hpp" />
+    <ClInclude Include="sfml\include\Graphics\VertexArray.hpp" />
+    <ClInclude Include="sfml\include\Graphics\View.hpp" />
+    <ClInclude Include="sfml\include\Network.hpp" />
+    <ClInclude Include="sfml\include\Network\Export.hpp" />
+    <ClInclude Include="sfml\include\Network\Ftp.hpp" />
+    <ClInclude Include="sfml\include\Network\Http.hpp" />
+    <ClInclude Include="sfml\include\Network\IpAddress.hpp" />
+    <ClInclude Include="sfml\include\Network\Packet.hpp" />
+    <ClInclude Include="sfml\include\Network\Socket.hpp" />
+    <ClInclude Include="sfml\include\Network\SocketHandle.hpp" />
+    <ClInclude Include="sfml\include\Network\SocketSelector.hpp" />
+    <ClInclude Include="sfml\include\Network\TcpListener.hpp" />
+    <ClInclude Include="sfml\include\Network\TcpSocket.hpp" />
+    <ClInclude Include="sfml\include\Network\UdpSocket.hpp" />
+    <ClInclude Include="sfml\include\OpenGL.hpp" />
+    <ClInclude Include="sfml\include\System.hpp" />
+    <ClInclude Include="sfml\include\System\Clock.hpp" />
+    <ClInclude Include="sfml\include\System\Err.hpp" />
+    <ClInclude Include="sfml\include\System\Export.hpp" />
+    <ClInclude Include="sfml\include\System\InputStream.hpp" />
+    <ClInclude Include="sfml\include\System\Lock.hpp" />
+    <ClInclude Include="sfml\include\System\Mutex.hpp" />
+    <ClInclude Include="sfml\include\System\NonCopyable.hpp" />
+    <ClInclude Include="sfml\include\System\Sleep.hpp" />
+    <ClInclude Include="sfml\include\System\String.hpp" />
+    <ClInclude Include="sfml\include\System\Thread.hpp" />
+    <ClInclude Include="sfml\include\System\ThreadLocal.hpp" />
+    <ClInclude Include="sfml\include\System\ThreadLocalPtr.hpp" />
+    <ClInclude Include="sfml\include\System\Time.hpp" />
+    <ClInclude Include="sfml\include\System\Utf.hpp" />
+    <ClInclude Include="sfml\include\System\Vector2.hpp" />
+    <ClInclude Include="sfml\include\System\Vector3.hpp" />
+    <ClInclude Include="sfml\include\Window.hpp" />
+    <ClInclude Include="sfml\include\Window\Context.hpp" />
+    <ClInclude Include="sfml\include\Window\ContextSettings.hpp" />
+    <ClInclude Include="sfml\include\Window\Event.hpp" />
+    <ClInclude Include="sfml\include\Window\Export.hpp" />
+    <ClInclude Include="sfml\include\Window\GlResource.hpp" />
+    <ClInclude Include="sfml\include\Window\Joystick.hpp" />
+    <ClInclude Include="sfml\include\Window\Keyboard.hpp" />
+    <ClInclude Include="sfml\include\Window\Mouse.hpp" />
+    <ClInclude Include="sfml\include\Window\VideoMode.hpp" />
+    <ClInclude Include="sfml\include\Window\Window.hpp" />
+    <ClInclude Include="sfml\include\Window\WindowHandle.hpp" />
+    <ClInclude Include="sfml\include\Window\WindowStyle.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="sfml\lib\sfml-audio-d.lib" />
+    <Library Include="sfml\lib\sfml-audio-s-d.lib" />
+    <Library Include="sfml\lib\sfml-audio-s.lib" />
+    <Library Include="sfml\lib\sfml-audio.lib" />
+    <Library Include="sfml\lib\sfml-graphics-d.lib" />
+    <Library Include="sfml\lib\sfml-graphics-s-d.lib" />
+    <Library Include="sfml\lib\sfml-graphics-s.lib" />
+    <Library Include="sfml\lib\sfml-graphics.lib" />
+    <Library Include="sfml\lib\sfml-main-d.lib" />
+    <Library Include="sfml\lib\sfml-main.lib" />
+    <Library Include="sfml\lib\sfml-network-d.lib" />
+    <Library Include="sfml\lib\sfml-network-s-d.lib" />
+    <Library Include="sfml\lib\sfml-network-s.lib" />
+    <Library Include="sfml\lib\sfml-network.lib" />
+    <Library Include="sfml\lib\sfml-system-d.lib" />
+    <Library Include="sfml\lib\sfml-system-s-d.lib" />
+    <Library Include="sfml\lib\sfml-system-s.lib" />
+    <Library Include="sfml\lib\sfml-system.lib" />
+    <Library Include="sfml\lib\sfml-window-d.lib" />
+    <Library Include="sfml\lib\sfml-window-s-d.lib" />
+    <Library Include="sfml\lib\sfml-window-s.lib" />
+    <Library Include="sfml\lib\sfml-window.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="sfml\include\Graphics\Rect.inl" />
+    <None Include="sfml\include\System\Thread.inl" />
+    <None Include="sfml\include\System\ThreadLocalPtr.inl" />
+    <None Include="sfml\include\System\Utf.inl" />
+    <None Include="sfml\include\System\Vector2.inl" />
+    <None Include="sfml\include\System\Vector3.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
