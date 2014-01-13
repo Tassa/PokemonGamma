@@ -12,8 +12,8 @@
 
 enum CourbeXP { Rapide, Normale, Lente, Parabolique, Erratic, Fluctuante, TresRapide, TresLente };
 
-#define SQUARED(x) ((x) * (x))											//Return a*a
-#define CUBE(x) ((x) * (x) * (x))											//Return a*a*a
+int squared(int a);														//Return a*a
+int cube(int a);														//Return a*a*a
 
 unsigned int getNextExp(CourbeXP c, unsigned int level);				//Return the amount of experience need for next level
 
