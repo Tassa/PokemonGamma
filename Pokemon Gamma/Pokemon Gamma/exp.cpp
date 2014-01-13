@@ -25,7 +25,7 @@ unsigned int getNextExp(CourbeXP c, unsigned int level)
 	switch (c)
 	{
 	case Rapide:
-		return (unsigned int)(0.85*(cube(level));
+		return (unsigned int)(0.85*(cube(level)));
 		break;
 
 	case Normale:
@@ -33,11 +33,11 @@ unsigned int getNextExp(CourbeXP c, unsigned int level)
 		break;
 
 	case Lente:
-		return (unsigned int)(1.2*(cube(level)))
+		return (unsigned int)(1.2*(cube(level)));
 			break;
 
 	case Parabolique:
-		return (unsigned int)((1.2*(cube(level)) - 15 * (squared(level)) + 100 * level - 85))
+		return (unsigned int)((1.2*(cube(level)) - 15 * (squared(level)) + 100 * level - 85));
 			break;
 
 	case Erratic:
@@ -52,16 +52,16 @@ unsigned int getNextExp(CourbeXP c, unsigned int level)
 			switch (level % 3)
 			{
 			case 0:
-				return (unsigned int)(((cube(level)) * (1.08111 - (level / 368.85) - 0)))
+				return (unsigned int)(((cube(level)) * (1.08111 - (level / 368.85) - 0)));
 					break;
 
 
 			case 1:
-				return (unsigned int)(((cube(level)) * (1.08111 - (level / 368.85) - 0.010)))
+				return (unsigned int)(((cube(level)) * (1.08111 - (level / 368.85) - 0.010)));
 					break;
 
 			case 2:
-				return (unsigned int)(((cube(level)) * (1.08111 - (level / 368.85) - 0.016)))
+				return (unsigned int)(((cube(level)) * (1.08111 - (level / 368.85) - 0.016)));
 					break;
 			}
 		}
