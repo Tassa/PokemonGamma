@@ -34,7 +34,7 @@ namespace BattleCore
 
 	protected:
 		unsigned int id;				// ID du Combat
-		Dresseur dresseur;	         	// Code "caractère" du Pokémon
+		Dresseur dresseur;	         	// Dresseur
 		unsigned int npc;				// ID du npc
 
 	};
