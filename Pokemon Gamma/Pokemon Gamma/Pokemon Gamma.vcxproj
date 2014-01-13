@@ -73,6 +73,8 @@
   <ItemGroup>
     <ClInclude Include="exp.h" />
     <ClInclude Include="battle.h" />
+    <ClInclude Include="attacks.h" />
+    <ClInclude Include="pokemon.h" />
     <ClInclude Include="pokedex.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -11,7 +11,7 @@
 #define POKEDEX_DATA_CPP
 
 #include <string>
-#include "attacks.h"
+//#include "attacks.h"
 
 namespace Pokemon
 {

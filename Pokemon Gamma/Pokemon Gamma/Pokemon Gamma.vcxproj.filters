@@ -19,33 +19,45 @@
     <Filter Include="Fichiers sources\battle">
       <UniqueIdentifier>{84dad552-adb6-4988-9dbd-c03fd7a97cb5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\core">
+      <UniqueIdentifier>{25aca099-c4d9-4dad-a755-2299d852671b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\core">
+      <UniqueIdentifier>{56179c07-4a0e-4b18-9f7d-66bfa9592829}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="exp.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="pokedex.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="battle.h">
       <Filter>Fichiers d%27en-tête\battle</Filter>
     </ClInclude>
+    <ClInclude Include="exp.h">
+      <Filter>Fichiers d%27en-tête\core</Filter>
+    </ClInclude>
+    <ClInclude Include="attacks.h">
+      <Filter>Fichiers d%27en-tête\core</Filter>
+    </ClInclude>
+    <ClInclude Include="pokedex.hpp">
+      <Filter>Fichiers d%27en-tête\core</Filter>
+    </ClInclude>
+    <ClInclude Include="pokemon.h">
+      <Filter>Fichiers d%27en-tête\core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="exp.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="attacks.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="effects.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="pokemon.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="battle.cpp">
       <Filter>Fichiers sources\battle</Filter>
+    </ClCompile>
+    <ClCompile Include="exp.cpp">
+      <Filter>Fichiers sources\core</Filter>
+    </ClCompile>
+    <ClCompile Include="pokemon.cpp">
+      <Filter>Fichiers sources\core</Filter>
+    </ClCompile>
+    <ClCompile Include="effects.cpp">
+      <Filter>Fichiers sources\core</Filter>
+    </ClCompile>
+    <ClCompile Include="attacks.cpp">
+      <Filter>Fichiers sources\core</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

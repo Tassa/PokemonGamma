@@ -87,11 +87,11 @@ unsigned int getNextExp(CourbeXP c, unsigned int level)
 		break;
 
 	case TresRapide:
-		return (unsigned int)(0.75*(cube(level)))
+		return (unsigned int)(0.75*(cube(level)));
 			break;
 
 	case TresLente:
-		return (unsigned int)(1.35*(cube(level)))
+		return (unsigned int)(1.35*(cube(level)));
 			break;
 	}
 } 

@@ -10,7 +10,7 @@
 #include <string>
 #include "exp.h"
 #include "attacks.h"
-#include "pokedex.h"
+#include "pokedex.hpp"
 
 namespace Pokemon
 {
