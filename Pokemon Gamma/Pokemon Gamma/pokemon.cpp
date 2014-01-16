@@ -53,10 +53,10 @@ namespace Pokemon_data
 			dv_ats = iv_ats;
 			dv_dfs = iv_dfs;
 
-			skills[0] = skills_data[skill1];
-			skills[1] = skills_data[skill2];
-			skills[2] = skills_data[skill3];
-			skills[3] = skills_data[skill4];
+			skills[0] = skills_data + skill1;
+			skills[1] = skills_data + skill2;
+			skills[2] = skills_data + skill3;
+			skills[3] = skills_data + skill4;
 
 			forme = formeIN;
 
@@ -182,7 +182,7 @@ namespace Pokemon_data
 		bool Pokemon_owned::upgrade_level()
 		{
 			level += 1;
-			getNextExp(exp_type, level + 1);
+			expNext = getNextExp(exp_type, level + 1);
 														/*A finir*/
 		}
 

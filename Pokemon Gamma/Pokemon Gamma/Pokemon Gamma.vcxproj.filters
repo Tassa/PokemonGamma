@@ -57,9 +57,6 @@
     <ClInclude Include="exp.h">
       <Filter>Fichiers d%27en-tête\core</Filter>
     </ClInclude>
-    <ClInclude Include="attacks.h">
-      <Filter>Fichiers d%27en-tête\core</Filter>
-    </ClInclude>
     <ClInclude Include="pokedex.hpp">
       <Filter>Fichiers d%27en-tête\core</Filter>
     </ClInclude>
@@ -310,6 +307,9 @@
       <Filter>Fichiers de ressources\sfml\include\System</Filter>
     </ClInclude>
     <ClInclude Include="effects.h">
+      <Filter>Fichiers d%27en-tête\core</Filter>
+    </ClInclude>
+    <ClInclude Include="attacks.h">
       <Filter>Fichiers d%27en-tête\core</Filter>
     </ClInclude>
   </ItemGroup>

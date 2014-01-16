@@ -25,7 +25,7 @@ namespace Pokemon_data
 	public:
 
 
-		Pokemon::Pokemon(const unsigned int & idIN,
+		Pokemon(const unsigned int & idIN,
 			const bool & shineyIN, const unsigned int & levelIN,
 			const NaturePokemon & natureIN,
 			const unsigned int & capSpeIn,
@@ -46,26 +46,26 @@ namespace Pokemon_data
 			const unsigned int & formeIN);
 
 
-		void Pokemon::ChangeAtk(const int & arg);
+		void ChangeAtk(const int & arg);
 
-		void Pokemon::ChangeDfe(const int & arg);
+		void ChangeDfe(const int & arg);
 
-		void Pokemon::ChangeSpd(const int & arg);
+		void ChangeSpd(const int & arg);
 
-		void Pokemon::ChangeAts(const int & arg);
+		void ChangeAts(const int & arg);
 
-		void Pokemon::ChangeDfs(const int & arg);
+		void ChangeDfs(const int & arg);
 
-		void Pokemon::ChangeEsq(const int & arg);
+		void ChangeEsq(const int & arg);
 
-		void Pokemon::ChangePrec(const int & arg);
+		void ChangePrec(const int & arg);
 
 
-		void Pokemon::ChangeStatut(const int & arg);
+		void ChangeStatut(const int & arg);
 
-		void Pokemon::Heal(const float & arg);
+		void Heal(const float & arg);
 
-		void Pokemon::SetClone();
+		void SetClone();
 
 	protected:
 		unsigned int id;				// ID du Pokémon
@@ -90,7 +90,7 @@ namespace Pokemon_data
 		unsigned int dv_ats;
 		unsigned int dv_dfs;
 
-		Attaque* skills[4];
+		Attaque *skills[4];
 		TypePokemon type1;
 		TypePokemon type2;
 
@@ -122,11 +122,11 @@ namespace Pokemon_data
 	class Pokemon_owned : Pokemon
 	{
 
-		bool Pokemon_owned::add_exp(int arg);
+		bool add_exp(int arg);
 
-		bool Pokemon_owned::upgrade_level();
+		bool upgrade_level();
 
-		bool Pokemon_owned::learnMove(Attaque* moveToLearn);
+		bool learnMove(Attaque* moveToLearn);
 
 	protected:
 
@@ -161,6 +161,7 @@ namespace Pokemon_data
 	class Pokemon_Egg : Pokemon_owned
 	{
 
+	protected :
 		unsigned int step_remaining;      		// pas restants avant éclosion
 
 	};

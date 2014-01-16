@@ -14,7 +14,8 @@
 #include "pokemon.h"
 #include "effects.h"
 #include "pokedex.hpp"
-#include "attacks.h"
+
+
 
 #define NB_MAX_SKILLS 200
 
@@ -25,6 +26,9 @@ namespace Pokemon_data
 
 	class Attaque
 	{
+	public :
+		Attaque();
+	protected :
 		std::string name;
 		TypePokemon type;								//Type de l'attaque
 		unsigned int power;								//Puissance
