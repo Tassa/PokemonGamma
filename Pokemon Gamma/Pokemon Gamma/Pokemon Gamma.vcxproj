@@ -78,6 +78,7 @@
     <ClCompile Include="battle.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="effects.h" />
     <ClInclude Include="exp.h" />
     <ClInclude Include="battle.h" />
     <ClInclude Include="attacks.h" />

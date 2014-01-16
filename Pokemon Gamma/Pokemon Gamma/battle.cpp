@@ -14,7 +14,7 @@ namespace BattleCore
 	{
 
 	public:
-		Battle::Battle(Dresseur & myDresseur, const unsigned int & idNpc)
+		/*Battle::Battle(Dresseur & myDresseur, const unsigned int & idNpc)
 		{
 			dresseur = myDresseur;
 			npc = idNpc;
@@ -35,7 +35,7 @@ namespace BattleCore
 	protected:
 		unsigned int id;				// ID du Combat
 		Dresseur dresseur;	         	// Dresseur
-		unsigned int npc;				// ID du npc
+		unsigned int npc;				// ID du npc*/
 
 	};
 

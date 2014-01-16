@@ -66,8 +66,7 @@ unsigned int getNextExp(CourbeXP c, unsigned int level)
 			}
 		}
 
-		if (level >= 100)
-			return (unsigned int)((cube(level)) * (0.8 - ((level - 100) / 3100)) + cos(level - 100) * 20000);
+		return (unsigned int)((cube(level)) * (0.8 - ((level - 100) / 3100)) + cos(level - 100) * 20000);
 
 		break;
 
@@ -81,16 +80,13 @@ unsigned int getNextExp(CourbeXP c, unsigned int level)
 		if (level > 35 && level <= 55)
 			return (unsigned int)((cube(level)) * (32 + (level / 2)) / 50);
 
-		if (level > 55)
-			return (unsigned int)((cube(level)) * (62.2 + (level / 20)) / 50);
-
-		break;
+		return (unsigned int)((cube(level)) * (62.2 + (level / 20)) / 50);
 
 	case TresRapide:
 		return (unsigned int)(0.75*(cube(level)));
 			break;
 
-	case TresLente:
+	default:
 		return (unsigned int)(1.35*(cube(level)));
 			break;
 	}

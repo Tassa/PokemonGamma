@@ -11,16 +11,10 @@
 #include "exp.h"
 #include "attacks.h"
 #include "pokedex.hpp"
+#include "pokemon.h"
 
-namespace Pokemon
+namespace Pokemon_data
 {
-	enum GenrePokemon { Aucun, Male, Femelle };
-
-	class Pokemon
-	{
-
-	public:
-
 
 		Pokemon::Pokemon(const unsigned int & idIN,
 			const bool & shineyIN, const unsigned int & levelIN,
@@ -59,10 +53,10 @@ namespace Pokemon
 			dv_ats = iv_ats;
 			dv_dfs = iv_dfs;
 
-			skills[0] = skill1;
-			skills[1] = skill2;
-			skills[2] = skill3;
-			skills[3] = skill4;
+			skills[0] = skills_data[skill1];
+			skills[1] = skills_data[skill2];
+			skills[2] = skills_data[skill3];
+			skills[3] = skills_data[skill4];
 
 			forme = formeIN;
 
@@ -155,8 +149,8 @@ namespace Pokemon
 
 		void Pokemon::Heal(const float & arg)
 		{
-			hp_stage += (unsigned int)(hp*arg);
-			if (hp_stage>hp){ hp_stage = hp; }
+			hp_stage += (int)(hp*arg);
+			if (hp_stage>(int)hp){ hp_stage = (int)hp; }
 		}
 
 		void Pokemon::SetClone()
@@ -173,103 +167,30 @@ namespace Pokemon
 			}
 		}
 
-	protected:
-		unsigned int id;				// ID du Pokémon
-		std::string name;					// Nom générique de l'espèce
-		NaturePokemon nature;         	// Code "caractère" du Pokémon
-		bool shiny;          			// Caractère Shiny
-		GenrePokemon gender;         	// 0 sans genre 1 male 2 femelle
-		std::string given_name;   			// Nom donné au Pokémon
-		unsigned int level;
 
-		unsigned int hp;        		// Stats
-		unsigned int atk;
-		unsigned int dfe;
-		unsigned int spd;
-		unsigned int ats;
-		unsigned int dfs;
-
-		unsigned int dv_hp;        		// Stats Innee
-		unsigned int dv_atk;
-		unsigned int dv_dfe;
-		unsigned int dv_spd;
-		unsigned int dv_ats;
-		unsigned int dv_dfs;
-
-		Attaque skills[4];
-		TypePokemon type1;
-		TypePokemon type2;
-
-		unsigned int ability;      	// Capacité propre du Pokémon
-		unsigned int capture_rate;       	// Taux de Capture
-
-
-		// Statut_Variable
-		unsigned int status;
-		unsigned int status_count;
-
-		unsigned int item_hold;      	// ID objet tenu
-		unsigned int happyness;
-
-		// Stats de combat
-		int hp_stage;
-		int atk_stage;
-		int dfe_stage;
-		int spd_stage;
-		int ats_stage;
-		int dfs_stage;
-		int eva_stage;
-		int acc_stage;
-
-		unsigned int forme;                // Le numéro de la forme alt
-		unsigned int clone_pv;
-	};
-
-	class Pokemon_owned : Pokemon
-	{
-
-		int upgrade_level()
+		bool Pokemon_owned::add_exp(int arg)
 		{
-			level += 1;
-			exp = 0;
+			exp += arg;
+			if (exp >= expNext)
+			{
+				upgrade_level();
+				return true;
+			}
+			return false;
 		}
 
-	protected:
+		bool Pokemon_owned::upgrade_level()
+		{
+			level += 1;
+			getNextExp(exp_type, level + 1);
+														/*A finir*/
+		}
 
-		CourbeXP exp_type;      				// Expérience: Courbe d'éxpérience
+		bool Pokemon_owned::learnMove(Attaque* moveToLearn)
+		{
 
-		// Caractéristiques
-		unsigned int code;          			// Code indentification propre au Pokémon
-		unsigned int trainer_id;
-		std::string trainer_name;
+		}
 
-		unsigned int exp;						//Experience actuel
-		unsigned int expNext;					//Expérience avant le niveau suivant
-
-		unsigned int atk_plus;     				// Effort Value (EV)
-		unsigned int dfe_plus;
-		unsigned int spd_plus;
-		unsigned int ats_plus;
-		unsigned int dfs_plus;
-		unsigned int hp_plus;
-
-		// Stat concours
-		unsigned int sang_froid;
-		unsigned int robustesse;
-		unsigned int beaute;
-		unsigned int intelligence;
-		unsigned int grace;
-
-		unsigned int ball_data;           		// Sprite de la ball utilisée
-		unsigned int obeissance;
-	};
-
-	class Pokemon_Egg : Pokemon_owned
-	{
-
-		unsigned int step_remaining;      		// pas restants avant éclosion
-
-	}
 }
 
 

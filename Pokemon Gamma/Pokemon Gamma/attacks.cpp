@@ -10,10 +10,10 @@
 #include <string>
 #include "pokemon.h"
 
-namespace Pokemon
+namespace Pokemon_data
 {
 
-	enum CategorieAttaque { Physique, Speciale, Statut };
+	/*enum CategorieAttaque { Physique, Speciale, Statut };
 
 	class Attaque
 	{
@@ -31,6 +31,6 @@ namespace Pokemon
 		Effect effet;
 		float probabilityEffet;
 		bool critElevee;
-	}
+	}*/
 
 }

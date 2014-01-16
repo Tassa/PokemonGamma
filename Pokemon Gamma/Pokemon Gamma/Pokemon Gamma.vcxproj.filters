@@ -309,6 +309,9 @@
     <ClInclude Include="SFML-2.1\include\SFML\System\Vector3.hpp">
       <Filter>Fichiers de ressources\sfml\include\System</Filter>
     </ClInclude>
+    <ClInclude Include="effects.h">
+      <Filter>Fichiers d%27en-tête\core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="battle.cpp">
