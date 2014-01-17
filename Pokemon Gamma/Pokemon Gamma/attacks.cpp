@@ -22,8 +22,7 @@ namespace Pokemon_data
 		power = 0;
 		precision = 100;
 		categorie = Physique;
-		ppMax = 0;
-		ppCurent = 0;
+		basePpMax = 0;
 		cible = true;
 		contact = true;
 		priorite = 5;

@@ -34,8 +34,8 @@ namespace Pokemon_data
 		unsigned int power;								//Puissance
 		unsigned int precision;							//Precision
 		CategorieAttaque categorie; 					//Physique , Spéciale , Statut
-		unsigned int ppMax;
-		unsigned int ppCurent;
+		unsigned short basePpMax;
+
 		bool cible;										//True => Ally, False => Enemy
 		bool contact;
 		unsigned int priorite;

@@ -38,8 +38,8 @@ namespace Pokemon_data
 		unsigned int ats;
 		unsigned int dfs;
 
-		std::map<unsigned int, Attaque* > skills_table;							//Attaques que le pokemon va apprendre 
-		std::map<unsigned int, Attaque* > skills_allows;						//Attaques que le pokemon peut apprendre (CT,CS)
+		std::map< unsigned int, unsigned int > skills_table;							//Attaques que le pokemon va apprendre 
+		std::map< unsigned int, unsigned int > skills_allows;						//Attaques que le pokemon peut apprendre (CT,CS)
 
 		unsigned int probability_female;										//Probabilité que ce pokemon soit une femelle
 		unsigned int capture_rate;												//Probabilité de capturer ce pokemon avec une pokeball

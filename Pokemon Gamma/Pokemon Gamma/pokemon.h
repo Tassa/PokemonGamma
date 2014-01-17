@@ -126,7 +126,7 @@ namespace Pokemon_data
 
 		bool upgrade_level();
 
-		bool learnMove(Attaque* moveToLearn);
+		bool learnMove(unsigned int moveToLearn);
 
 	protected:
 
@@ -146,6 +146,10 @@ namespace Pokemon_data
 		unsigned int ats_plus;
 		unsigned int dfs_plus;
 		unsigned int hp_plus;
+
+		unsigned short ppCurrent[4];
+		unsigned short ppMax[4];
+
 
 		// Stat concours
 		unsigned int sang_froid;

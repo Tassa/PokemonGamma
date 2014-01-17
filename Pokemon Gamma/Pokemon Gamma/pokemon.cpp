@@ -183,10 +183,14 @@ namespace Pokemon_data
 		{
 			level += 1;
 			expNext = getNextExp(exp_type, level + 1);
-														/*A finir*/
+			if (Pokedex_data[id].skills_table.find(level) != Pokedex_data[id].skills_table.end())
+			{
+				learnMove(Pokedex_data[id].skills_table[level]);
+			}
+			/*à finir (évolution)*/
 		}
 
-		bool Pokemon_owned::learnMove(Attaque* moveToLearn)
+		bool Pokemon_owned::learnMove(unsigned int moveToLearn)
 		{
 
 		}
