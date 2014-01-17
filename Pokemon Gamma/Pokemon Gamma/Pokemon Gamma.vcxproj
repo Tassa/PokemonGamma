@@ -71,13 +71,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="autotiles.cpp" />
+    <ClCompile Include="direction.cpp" />
     <ClCompile Include="exp.cpp" />
     <ClCompile Include="attacks.cpp" />
     <ClCompile Include="effects.cpp" />
     <ClCompile Include="pokemon.cpp" />
     <ClCompile Include="battle.cpp" />
+    <ClCompile Include="usefullSFMLThings.cpp" />
+    <ClCompile Include="vector2d.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="abs.h" />
+    <ClInclude Include="autotiles.h" />
+    <ClInclude Include="direction.h" />
     <ClInclude Include="effects.h" />
     <ClInclude Include="exp.h" />
     <ClInclude Include="battle.h" />
@@ -165,6 +172,8 @@
     <ClInclude Include="SFML-2.1\include\SFML\Window\Window.hpp" />
     <ClInclude Include="SFML-2.1\include\SFML\Window\WindowHandle.hpp" />
     <ClInclude Include="SFML-2.1\include\SFML\Window\WindowStyle.hpp" />
+    <ClInclude Include="usefullSFMLThings.h" />
+    <ClInclude Include="vector2d.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="SFML-2.1\lib\sfml-audio-d.lib" />

@@ -90,7 +90,7 @@ namespace Pokemon_data
 		unsigned int dv_ats;
 		unsigned int dv_dfs;
 
-		Attaque *skills[4];
+		Attaque* skills[4];
 		TypePokemon type1;
 		TypePokemon type2;
 

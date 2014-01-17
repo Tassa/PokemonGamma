@@ -1,0 +1,18 @@
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//																																		//
+//														Pokemon Gamma Engine															//
+//														Garazbolg 18/01/2013																//
+//																																		//
+//														UseFullSFMLThing.h																//
+//																																		//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#ifndef SFML_USEFULL_H
+#define SFML_USEFULL_H
+#include <SFML/graphics.hpp>
+
+namespace sfUse
+{
+    void Sprite2VertexArray(const sf::Sprite & sprite,sf::VertexArray & vertices);
+}
+
+#endif

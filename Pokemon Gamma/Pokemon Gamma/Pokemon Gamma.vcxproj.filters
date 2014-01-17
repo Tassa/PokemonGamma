@@ -49,6 +49,12 @@
     <Filter Include="Fichiers de ressources\sfml\include\Window">
       <UniqueIdentifier>{b032b7c6-1d95-4bb8-a179-d37a5603a4f6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers sources\map">
+      <UniqueIdentifier>{9a598fc2-8981-46ca-b897-2a09a4284451}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\map">
+      <UniqueIdentifier>{5c8792ae-a674-4049-b8b9-3b077aa70cbf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="battle.h">
@@ -312,6 +318,21 @@
     <ClInclude Include="attacks.h">
       <Filter>Fichiers d%27en-tête\core</Filter>
     </ClInclude>
+    <ClInclude Include="abs.h">
+      <Filter>Fichiers d%27en-tête\map</Filter>
+    </ClInclude>
+    <ClInclude Include="autotiles.h">
+      <Filter>Fichiers d%27en-tête\map</Filter>
+    </ClInclude>
+    <ClInclude Include="direction.h">
+      <Filter>Fichiers d%27en-tête\map</Filter>
+    </ClInclude>
+    <ClInclude Include="usefullSFMLThings.h">
+      <Filter>Fichiers d%27en-tête\map</Filter>
+    </ClInclude>
+    <ClInclude Include="vector2d.h">
+      <Filter>Fichiers d%27en-tête\map</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="battle.cpp">
@@ -328,6 +349,18 @@
     </ClCompile>
     <ClCompile Include="attacks.cpp">
       <Filter>Fichiers sources\core</Filter>
+    </ClCompile>
+    <ClCompile Include="autotiles.cpp">
+      <Filter>Fichiers sources\map</Filter>
+    </ClCompile>
+    <ClCompile Include="direction.cpp">
+      <Filter>Fichiers sources\map</Filter>
+    </ClCompile>
+    <ClCompile Include="usefullSFMLThings.cpp">
+      <Filter>Fichiers sources\map</Filter>
+    </ClCompile>
+    <ClCompile Include="vector2d.cpp">
+      <Filter>Fichiers sources\map</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
