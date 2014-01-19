@@ -18,19 +18,24 @@
 	Autotiles works like in RPGMaker XP
 */
 
+Autotile::Autotile()
+{
+
+}
+
 	Autotile::Autotile(const std::string & fileName)
 	{
-		if(!_image.loadFromFile("rsc/img/autotiles/"+fileName))
+		if(!_image->loadFromFile("Graphics/Autotiles/"+fileName))
 		{
 			std::cout<<"ERROR WITH : Autotile rsc/img/autotiles/"<<fileName<<" Not Found"<<std::endl;
 		}
 
-		_resolution = _image.getSize().x/3;
+		_resolution = _image->getSize().x/3;
 		_scale = 64.f/_resolution;
 		_semiResolution = _resolution/2;
 		for(unsigned int s =0;s<4;s++)
 		{
-            _sprite[s].setTexture(_image);
+            _sprite[s].setTexture(*_image);
             _sprite[s].setScale(_scale,_scale);
 		}
 
@@ -38,7 +43,7 @@
 
     sf::Texture* Autotile::GetTexture()
     {
-        return &_image;
+        return _image;
     }
 
 	void Autotile::GetSprites( const bool & c00,const bool & c10,const bool & c20,

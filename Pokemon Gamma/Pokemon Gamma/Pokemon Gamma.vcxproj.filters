@@ -333,6 +333,9 @@
     <ClInclude Include="vector2d.h">
       <Filter>Fichiers d%27en-tête\map</Filter>
     </ClInclude>
+    <ClInclude Include="tileset.h">
+      <Filter>Fichiers d%27en-tête\map</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="battle.cpp">
@@ -360,6 +363,9 @@
       <Filter>Fichiers sources\map</Filter>
     </ClCompile>
     <ClCompile Include="vector2d.cpp">
+      <Filter>Fichiers sources\map</Filter>
+    </ClCompile>
+    <ClCompile Include="tileset.cpp">
       <Filter>Fichiers sources\map</Filter>
     </ClCompile>
   </ItemGroup>

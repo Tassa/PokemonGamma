@@ -2,173 +2,143 @@
 #include <iostream>
 #include <fstream>
 #include <new>
+#include <string>
+#include "vector2d.h"
+#include "autotiles.h"
 #include "usefullGeneralThings.h"
+#include "tileset.h"
 
+TilesetCase::TilesetCase(){}
 
-#define MAX_TYPE_TILESET 5
-#define MAX_DIF_TILESET_PER_TYPE 20
-#define MAX_AUTOTILES_PER_TILESET 7
-
-const std::string typesTilesetNames[MAX_TYPE_TILESET]={"City","Mine","Forest","Field","Dungeon"};
-
-class TilesetCase
+TilesetCase::TilesetCase(	const bool &practicable,
+							const bool &mG,const bool &mD,const bool &mH,const bool &mB,
+							const unsigned int &autoEvenement,
+							const unsigned int &superposition)
 {
-	public:
+	practic = practicable;
+	mvG = mG;
+	mvD = mD;
+	mvH = mH;
+	mvB = mB;
+	autoEvent = autoEvenement;
+	superpositionPriority = superposition;
+}
 
-		TilesetCase::TilesetCase(){}
 
-		TilesetCase::TilesetCase(	const bool &practicable,
-									const bool &mG,const bool &mD,const bool &mH,const bool &mB,
-									const unsigned int &autoEvenement,
-									const unsigned int &superposition):
-									practic(practicable),mvG(mG),mvD(mD),mvH(mH),mvB(mB),autoEvent(autoEvenement),superpositionPriority(superposition)
-		{}
-
-		const unsigned int autoEvent,superpositionPriority;
-		const bool practic,mvG,mvD,mvH,mvB;
-
-};
-
-class Tileset
+void Tileset::LoadTextureFromFile(const std::string & tilesetName)
 {
-public:
-
-	void Tileset::LoadTextureFromFile(const string & tilesetName)
+	if(!_TilesetTexture.loadFromFile("Graphics/Tilesets/"+tilesetName+".png"))
 	{
-		if(!_TilesetTexture.LoadFromFile("rsc/img/Tilesets/"+typesTilesetNames[_type]+"/"+tilesetName+".png"))
-		{
-			std::cout<<"ERROR WITH : Tileset "+typesTilesetNames[_type]+"/"+tilesetName+".png NOT FOUND"<<endl;
-			return EXIT_FAILURE;
-		}
-		_resolution = _TilesetTexture.GetWidth()/_width;
-		_height = (_TilesetTexture.GetHeight()/_resolution)+1;
+		std::cout<<"ERROR WITH : Tileset "+tilesetName+".png NOT FOUND"<<std::endl;
+		exit(0);
 	}
+	_resolution = _TilesetTexture.getSize().x/_width;
+	_height = (_TilesetTexture.getSize().y/_resolution)+1;
+}
 
-	void Tileset::LoadDataFromFile(const string & tilesetName)
-	{
-		ifstream tilesetFile;
-		tilesetFile.open("rsc/data/Tilesets/"+typesTilesetNames[_type]+"/"+tilesetName+".til");
-
-		tilesetFile>>_dateOfCreation;
-		
-		string pictureName;
-		tilesetFile>>pictureName;
-		LoadTextureFromFile(pictureName);
-		
-		string autotilesFilePath;
-		for(unsigned int a = 0; a<MAX_AUTOTILES_PER_TILESET ; a++)
-		{
-			tilesetFile>>autotilesFilePath;
-			if(autotilesFilePath != "N/A")
-			{
-				autotiles[a] = Autotile(autotilesFilePath);
-				autotilesExist=true;
-			}
-			else
-			{
-				autotilesExist=false;
-			}
-		}
-		
-		_cases = new TilesetCase*[_width];
-		for(unsigned int i =0;i<_width;i++)
-		{
-			_cases[i]=new TilesetCase[_height];
-		}
-		
-
-		unsigned int autoEvent,superpositionPriority;
-		bool practic,mvG,mvD,mvH,mvB;
-
-		for(unsigned int i = 0;i<_width;i++)
-		{
-			for(unsigned int j = 0; j<_height+1;j++)
-			{
-
-				tilesetFile>>boolalpha>>practic;
-				tilesetFile>>boolalpha>>mvG;
-				tilesetFile>>boolalpha>>mvD;
-				tilesetFile>>boolalpha>>mvH;
-				tilesetFile>>boolalpha>>mvB;
-				tilesetFile>>autoEvent;
-				tilesetFile>>superpositionPriority;
-
-				_cases[i][j]=TilesetCase(practic,mvG,mvD,mvH,mvB,autoEvent,superpositionPriority);
-			}
-		}
-
-		tilesetFile.close();
-
-	}
-
-	Tileset::Tileset(const unsigned int & type, const string & name)
-	{
-		_type = type;
-		_name = name;
-		_width = 8;
-		
-		LoadDataFromFile(name);
-		_sprite.setTexture(_TilesetTexture);
-		_sprite.setScale(64.f/_resolution,64.f/_resolution);
-	}
-
-	Tileset::~Tileset()
-	{
-		for(unsigned int i =0;i<_width;i++)
-		{
-			delete _cases[i];
-		}
-		delete _cases;
-	}
-
-	sf::Sprite Tileset::GetSprite(const unsigned int & x,const unsigned int & y) const
-	{
-		_sprite.setTextureRect(sf::IntRect(x*_resolution,(y-1)*_resolution,_resolution,_resolution));//y-1 because of the autotiles
-		return _sprite;
-	}
-
-	sf::Sprite Tileset::GetSprite(const Point2i & p) const
-	{
-		return GetSprite(p.x,p.y);
-	}
-
-	Autotile* Tileset::GetAutotile(const Point2i & p) const
-	{
-		return &autotiles[p.x-1];
-	}
+void Tileset::LoadDataFromFile(const std::string & tilesetName)
+{
+	std::ifstream tilesetFile;
+	tilesetFile.open("/*à Compléter*/");
 	
-	bool Tileset::GetAutotileExist(const Point2i & p) const
-	{
-		return autotilesExist[p.x-1];
-	}
+	std::string pictureName;
+	tilesetFile>>pictureName;
+	LoadTextureFromFile(pictureName);
 	
-	TilesetCase Tileset::GetTilesetCase(const unsigned int & x,const unsigned int & y) const
+	std::string autotilesFilePath;
+	for(unsigned int a = 0; a<MAX_AUTOTILES_PER_TILESET ; a++)
 	{
-		return _cases[x][y];
+		tilesetFile>>autotilesFilePath;
+		if(autotilesFilePath != "N/A")
+		{
+			autotiles[a] = Autotile(autotilesFilePath);
+			autotilesExist[a] = true;
+		}
+		else
+		{
+			autotilesExist[a] = false;
+		}
 	}
-
-	TilesetCase Tileset::GetTilesetCase(const Point2i & p) const
+		
+	_cases = new TilesetCase*[_width];
+	for(unsigned int i =0;i<_width;i++)
 	{
-		return GetTilesetCase(p.x,p.y);
+		_cases[i]=new TilesetCase[_height];
 	}
+		
 
-	sf::Texture Tileset::GetTexture()
+	unsigned int autoEvent,superpositionPriority;
+	bool practic,mvG,mvD,mvH,mvB;
+
+	for(unsigned int i = 0;i<_width;i++)
 	{
-		return &_TilesetTexture;
+		for(unsigned int j = 0; j<_height+1;j++)
+		{
+
+			tilesetFile >> std::boolalpha >>practic;
+			tilesetFile >> std::boolalpha >> mvG;
+			tilesetFile >> std::boolalpha >> mvD;
+			tilesetFile >> std::boolalpha >> mvH;
+			tilesetFile >> std::boolalpha >> mvB;
+			tilesetFile>>autoEvent;
+			tilesetFile>>superpositionPriority;
+			_cases[i][j]=TilesetCase(practic,mvG,mvD,mvH,mvB,autoEvent,superpositionPriority);
+		}
 	}
+	tilesetFile.close();
+}
 
+Tileset::Tileset(const unsigned int & type, const std::string & name)
+{
+	_type = type;
+	_name = name;
+	_width = 8;
+	
+	LoadDataFromFile(name);
+	_sprite.setTexture(_TilesetTexture);
+	_sprite.setScale(64.f/_resolution,64.f/_resolution);
+}
 
-private:
+Tileset::~Tileset()
+{
+	for(unsigned int i =0;i<_width;i++)
+	{
+		delete _cases[i];
+	}
+	delete _cases;
+}
+sf::Sprite Tileset::GetSprite(const unsigned int & x,const unsigned int & y)
+{
+	_sprite.setTextureRect(sf::IntRect(x*_resolution,(y-1)*_resolution,_resolution,_resolution));		//y-1 because of the autotiles
+	return _sprite;
+}
 
-	sf::Texture _TilesetTexture;
-	sf::Sprite _sprite;
-	TilesetCase** _cases;
-	Autotile autotiles[MAX_AUTOTILES_PER_TILESET];
-	bool autotilesExist[MAX_AUTOTILES_PER_TILESET];
-	unsigned int _width;
-	unsigned int _height;
-	unsigned int _resolution;
-	unsigned int _type;
-	std::string _name;
+sf::Sprite Tileset::GetSprite(const Point2i & p)
+{
+	return GetSprite(p.x,p.y);
+}
 
-};
+Autotile * Tileset::GetAutotile(const Point2i & p)
+{
+	return autotiles+(p.x-1);
+}
+
+bool Tileset::GetAutotileExist(const Point2i & p) const
+{
+	return autotilesExist[p.x-1];
+}
+
+TilesetCase Tileset::GetTilesetCase(const unsigned int & x,const unsigned int & y) const
+{
+	return _cases[x][y];
+}
+
+TilesetCase Tileset::GetTilesetCase(const Point2i & p) const
+{
+	return GetTilesetCase(p.x,p.y);
+}
+
+sf::Texture* Tileset::GetTexture()
+{
+	return &_TilesetTexture;
+}

@@ -78,6 +78,7 @@
     <ClCompile Include="effects.cpp" />
     <ClCompile Include="pokemon.cpp" />
     <ClCompile Include="battle.cpp" />
+    <ClCompile Include="tileset.cpp" />
     <ClCompile Include="usefullSFMLThings.cpp" />
     <ClCompile Include="vector2d.cpp" />
   </ItemGroup>
@@ -172,6 +173,7 @@
     <ClInclude Include="SFML-2.1\include\SFML\Window\Window.hpp" />
     <ClInclude Include="SFML-2.1\include\SFML\Window\WindowHandle.hpp" />
     <ClInclude Include="SFML-2.1\include\SFML\Window\WindowStyle.hpp" />
+    <ClInclude Include="tileset.h" />
     <ClInclude Include="usefullSFMLThings.h" />
     <ClInclude Include="vector2d.h" />
   </ItemGroup>

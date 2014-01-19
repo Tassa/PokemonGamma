@@ -22,6 +22,8 @@ class Autotile
 {
 public:
 
+	Autotile();
+
 	Autotile(const std::string & fileName);
 
     sf::Texture* GetTexture();
@@ -35,7 +37,7 @@ private:
 	unsigned int _resolution;
 	float _scale;
 	unsigned int _semiResolution;
-	sf::Texture _image;
+	sf::Texture* _image;
 	sf::Sprite _sprite[4];
 
 };
