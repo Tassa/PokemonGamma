@@ -23,7 +23,5 @@ enum Direction { Bas,
                 Droite_Haut,
                 Aucune };
 
-Direction directionOpposee(const Direction & d);
-
 
 #endif //DIRECTION_H

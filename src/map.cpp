@@ -3,12 +3,10 @@
 #include <queue>
 #include <cstring>
 #include <fstream>
-#include <iostream>
 
 #include "tileset.h"
 #include "vector2d.h"
 #include "direction.h"
-#include "usefullSFMLThings.h"
 
 #define NB_CASE_X_VIEW 6
 #define NB_CASE_Y_VIEW 4
@@ -35,28 +33,20 @@ public:
 				const Point2i &p2,
 				const Point2i &p3,
 				const Point2i &p4,
-				const bool & practic,
-				const bool & gauche, const bool & droite, const bool & haut, const bool & bas,
-				const unsigned int & evenement, const unsigned int & autoEvenement)
+				,const bool & practic
+				, const bool & gauche, const bool & droite, const bool & haut, const bool & bas
+				, const unsigned int & evenement, const unsigned int & autoEvenement):
+				couches[0](p1),couches[1](p2),couches[2](p3),couches[3](p4)
+				,event(evenement),autoEvenement(autoEvenement)
+				,practicable(practic),mvtDir[Gauche](gauche),mvtDir[Droite](droite),mvtDir[Haut](haut),mvtDir[Bas](bas)
 	{
-		couches[0] = p1;
-		couches[1] = p2;
-		couches[2] = p3;
-		couches[3] = p4;
-		/*event(evenement),autoEvenement(autoEvenement),*/
-		practicable = practic;
-		mvtDir[Gauche] = gauche;
-		mvtDir[Droite] = droite;
-		mvtDir[Haut] = haut;
-		mvtDir[Bas] = bas;
-
 		for(unsigned int i =0;i<4;i++)
 		{
 			if(couches[i]==Point2i()){couchesExist[i]=false;}
 			else{couchesExist[i]=true;}
 		}
-		/*if(evenement == 0){eventExist=false;}
-		else{eventExist=true;}*/
+		if(evenement == 0){eventExist=false;}
+		else{eventExist=true;}
 	}
 
 	bool Case::GetPracticable() const
@@ -72,7 +62,7 @@ public:
 
 	Point2i Case::GetTilesetPos(const unsigned int & couche) const
 	{
-		if (couche > 3){ exit(3); }
+		if(couche>3){return EXIT_FAILURE}
 		return couches[couche];
 	}
 
@@ -94,11 +84,11 @@ private:
 	bool couchesExist[4];
 	
 
-	/*Evenement event;
+	Evenement event;
 	bool eventExist;
 
 	Evenement autoEvent;
-	bool autoEventExist;*/
+	bool autoEventExist;
 
 	bool practicable;
 	bool mvtDir[4];
@@ -115,7 +105,7 @@ Map::Map(const string & filePath)
 {
 	LoadFromFile(filePath);
 	_emptySprite.setTexture(_backgroundTexture);
-	_emptySprite.setTextureRect(sf::IntRect(0,0,0,0));
+	_emptySprite.setTextureRect(0.f,0.f,0.f,0.f);
 	_emptySprite.setPosition(0,0);
 	updateSprites();
 }
@@ -129,14 +119,23 @@ Map::~Map()
 	delete _cases;
 }
 
-bool Map::CanMove(const Direction & d1, const Point2i & pos) const
+bool Map::GetDirectionAndPracticableGrid_from_pos(const Direction & d1, const Point2f & pos,const float & radius) const
 {
+	bool practic(true);
+	for(unsigned int i = static_cast<int>(pos.x-radius);i<=static_cast<int>(pos.x+radius);i++)
+	{
+		for(unsigned int j = static_cast<int>(pos.y-radius);j<=static_cast<int>(pos.y+radius);j++)
+		{
+			practic =(_cases[i][j].canDirection(d1)
+				&&GetCase(Point2i(i,j).addDirection(d1)).canDirection(directionOpposee(d1))
+				&&GetPracticable(Point2i(i,j).addDirection(d1))
+				&&GetPracticable(Point2i(i,j).addDirection(d1)));
 
-	return (_cases[pos.x][pos.y].canDirection(d1)
-		&& GetCase(Point2i(pos.x,pos.y).addDirection(d1)).canDirection(directionOpposee(d1))
-		&& GetPracticable(Point2i(pos.x, pos.y).addDirection(d1))
-		&& GetPracticable(Point2i(pos.x, pos.y).addDirection(d1)));
+			if(!practic)){break;}
+		}
+	}
 
+	return practic;
 }
 
 void Map::LoadFromFile(const string & filePath)
@@ -158,12 +157,12 @@ void Map::LoadFromFile(const string & filePath)
 	mapFile>>_width;
 
 	mapFile>>backgroundName;
-	if(!_backgroundTexture.loadFromFile("rsc/img/panoramas/"+backgroundName+".png"))
+	if(!_backgroundTexture.LoadFromFile("rsc/img/panoramas/"+backgroundName".png"))
 	{
-		if(!_backgroundTexture.loadFromFile("rsc/img/panoramas/black.png"))
+		if(!_backgroundTexture.LoadFromFile("rsc/img/panoramas/black.png"))
 		{
-			std::cout<<"ERROR WITH :Background texture : "+backgroundName+".png NOT FOUND"<<std::endl;
-			exit(1);
+			cout<<"ERROR WITH :Background texture : "+backgroundName+".png NOT FOUND"<<endl;
+			return EXIT_FAILURE;
 		}
 	}
 
@@ -237,18 +236,17 @@ void Map::updateSprites()
 			{
                 if(_cases[i][j].GetCoucheExist(c))
                 {
-					Point2i tilesetPosition = _cases[i][j].GetTilesetPos(c);
 					unsigned int super = _tileset.GetTilesetCase(tilesetPosition).superpositionPriority;
                     if(_cases[i][j].GetTilesetPos(c).y==0)
 					{
 						if(_tileset.GetAutotileExist(_cases[i][j].GetTilesetPos(c)))
 						{	
-							
+							Point2i tilesetPosition = _cases[i][j].GetTilesetPos(c);
 							_tileset.GetAutotile(tilesetPosition)->GetSprites((_cases[i-1][j-1].GetTilesetPos(c)==tilesetPosition),(_cases[i  ][j-1].GetTilesetPos(c)==tilesetPosition),(_cases[i+1][j-1].GetTilesetPos(c)==tilesetPosition),
 																			  (_cases[i-1][j  ].GetTilesetPos(c)==tilesetPosition),														(_cases[i+1][j  ].GetTilesetPos(c)==tilesetPosition),
 																			  (_cases[i-1][j+1].GetTilesetPos(c)==tilesetPosition),(_cases[i  ][j+1].GetTilesetPos(c)==tilesetPosition),(_cases[i+1][j+1].GetTilesetPos(c)==tilesetPosition),
 																			  Point2i(i,j),_cases[i][j].vertexArray[super].vertices);
-							_cases[i][j].vertexArray[super].texture = _tileset.GetAutotile(tilesetPosition)->GetTexture();
+							_cases[i][j].vertexArray[super].texture = _tileset.GetAutotile(tilesetPosition).GetTexture();
 						}
 					}
                     else
@@ -264,10 +262,10 @@ void Map::updateSprites()
 	
 }
 
-/*Evenement Map::GetEvent(const Point2i & p) const
+Evenement Map::GetEvent(const Point2i & p) const
 {
 
-}*/
+}
 
 Case Map::GetCase(const Point2i & p) const
 {
@@ -284,26 +282,51 @@ bool Map::GetPracticable(const Point2i & p) const
 	return _cases[p.x][p.y].GetPracticable();
 }
 
-sf::Sprite Map::GetSprite(const unsigned int x, const unsigned int y,const unsigned int & couche)
+sf::Sprite Map::GetSprite(const unsigned int x, const unsigned int y,const unsigned int & couche) const
 {
-	if(_cases[x][y].GetCoucheExist(couche))
+	if(_cases[p.x][p.y].GetCoucheExist(couche))
 	{
 		_sprite = _tileset.GetSprite(_cases[x][y].GetTilesetPos(couche));
-		_sprite.setPosition(64.f*x, 64.f*y);
-		//_sprite.setScale(64/_sprite.getSize().x,64/_sprite.getSize().y);
+		_sprite.setPosition(x*64,y*64);
+		_sprite.setScale(64/_sprite.getSize().x,64/_sprite.getSize().y);
 		return _sprite;
 	}
 	else{return _emptySprite;}
 }
 
-sf::Sprite Map::GetSprite(const Point2i & p,const unsigned int & couche)
+sf::Sprite Map::GetSprite(const Point2i & p,const unsigned int & couche) const
 {
 	return GetSprite(p.x,p.y,couche);
 }
 
 
-
 /*
+map<Point2f,Item*> Items_on_map;
+map<Point2f,Item*>iterator it_Items_on_map;
+pair<map<Point2f,Item*>iterator,bool> ret_Items_on_map;
+
+void Map::pushOut(Item* objectToPush,const Point2f & p)
+{
+	ret_Items_on_map=Items_on_map.insert( pair<Point2f,Item>(p,objectToPush));
+	if (!ret_Items_on_map.second)
+	{
+			Point2f a(0.001,0.0);
+			Point2f b(0.0,0.001);
+			Point2f actA(0.0,0.0);
+			Point2f actB(0.0,0.0);
+			while(!ret_Items_on_map.second)
+			{
+				actA += a;
+				actB += b;
+				if(getPracticableFromPoint(Point2i(p+actA))){ret_Items_on_map=Items_on_map.insert( pair<Point2f,Item*>(p+actA,objectToPush));}
+				if((!ret_Items_on_map.second)&&(getPracticableFromPoint(Point2i(p+actB)))){ret_Items_on_map=Items_on_map.insert( pair<Point2f,Item*>(p+actB,objectToPush));}
+				if((!ret_Items_on_map.second)&&(getPracticableFromPoint(Point2i(p-actA)))){ret_Items_on_map=Items_on_map.insert( pair<Point2f,Item*>(p-actA,objectToPush));}
+				if((!ret_Items_on_map.second)&&(getPracticableFromPoint(Point2i(p-actB)))){ret_Items_on_map=Items_on_map.insert( pair<Point2f,Item*>(p-actB,objectToPush));}
+			}
+	}
+}
+*/
+
 void Map::draw(sf::RenderWindow & window, priority_queue<Character> charactersOrderedByPosition,const Point2i & center)
 {
 	int cXt=center.x-NB_CASE_X_VIEW
@@ -364,15 +387,14 @@ for(unsigned int s = 2; s<6 ; s++)
 }
 
 }
-*/
 
 private:
 
 
 	unsigned int _noMap;
-	std::string _dateOfCreation;
-	std::string _nameOfMap;
-	std::string _madeBy;
+	String _dateOfCreation;
+	String _nameOfMap;
+	String _madeBy;
 
 	unsigned int _typeOf;
 	string _tileSetName;

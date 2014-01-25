@@ -1,12 +1,3 @@
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//																																		//
-//														Pokemon Gamma Engine															//
-//														Garazbolg 18/01/2013															//
-//																																		//
-//														Tileset.h																		//
-//																																		//
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 #include <SFML/Graphics.hpp>
 #include <string>
 #include "vector2d.h"
@@ -33,8 +24,6 @@ public:
 class Tileset
 {
 public:
-
-	Tileset();
 
 	void LoadTextureFromFile(const std::string & tilesetName);
 
