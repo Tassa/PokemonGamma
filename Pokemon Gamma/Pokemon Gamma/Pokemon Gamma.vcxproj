@@ -76,6 +76,7 @@
     <ClCompile Include="exp.cpp" />
     <ClCompile Include="attacks.cpp" />
     <ClCompile Include="effects.cpp" />
+    <ClCompile Include="map.cpp" />
     <ClCompile Include="pokemon.cpp" />
     <ClCompile Include="battle.cpp" />
     <ClCompile Include="tileset.cpp" />

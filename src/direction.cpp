@@ -3,27 +3,29 @@
 //														Pokemon Gamma Engine															//
 //														Garazbolg 18/01/2013															//
 //																																		//
-//														Direction.h																		//
+//														Direction																		//
 //																																		//
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#ifndef DIRECTION_H
-#define DIRECTION_H
+#include "direction.h"
 
-#include <utility>
-
-#define MIN_VAL_FOR_VECTORS_2D 0.2
-
-enum Direction { Bas,
-                Gauche,
-                Droite,
-                Haut,
-                Gauche_Bas,
-                Gauche_Haut,
-                Droite_Bas,
-                Droite_Haut,
-                Aucune };
-
-Direction directionOpposee(const Direction & d);
-
-
-#endif //DIRECTION_H
+Direction directionOpposee(const Direction & d)
+{
+	switch (d)
+	{
+		case Gauche :
+			return Droite;
+		break;
+		case Droite :
+			return Gauche;
+		break;
+		case Haut :
+			return Bas;
+		break;
+		case Bas :
+			return Haut;
+		break;
+		default:
+			return Aucune;
+		break;
+	}
+}

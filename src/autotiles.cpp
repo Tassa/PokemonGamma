@@ -27,7 +27,7 @@ Autotile::Autotile()
 	{
 		if(!_image->loadFromFile("Graphics/Autotiles/"+fileName))
 		{
-			std::cout<<"ERROR WITH : Autotile Graphics/Autotiles/"<<fileName<<" Not Found"<<std::endl;
+			std::cout<<"ERROR WITH : Autotile rsc/img/autotiles/"<<fileName<<" Not Found"<<std::endl;
 		}
 
 		_resolution = _image->getSize().x/3;

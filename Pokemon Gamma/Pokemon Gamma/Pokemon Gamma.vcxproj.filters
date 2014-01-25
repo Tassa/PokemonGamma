@@ -368,6 +368,9 @@
     <ClCompile Include="tileset.cpp">
       <Filter>Fichiers sources\map</Filter>
     </ClCompile>
+    <ClCompile Include="map.cpp">
+      <Filter>Fichiers sources\map</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Library Include="SFML-2.1\lib\sfml-audio.lib">
