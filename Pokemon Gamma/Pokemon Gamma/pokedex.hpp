@@ -43,9 +43,12 @@ namespace Pokemon_data
 
 		unsigned int probability_female;										//Probabilité que ce pokemon soit une femelle
 		unsigned int capture_rate;												//Probabilité de capturer ce pokemon avec une pokeball
+
+		bool vu;
+		bool capturee;
 	};
 
-	Pokemon_Data_Entry Pokedex_data[NB_MAX_POKEMON];
+	extern Pokemon_Data_Entry Pokedex_data[NB_MAX_POKEMON];
 
 }
 #endif

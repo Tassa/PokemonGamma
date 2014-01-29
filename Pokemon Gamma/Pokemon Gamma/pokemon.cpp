@@ -53,10 +53,10 @@ namespace Pokemon_data
 			dv_ats = iv_ats;
 			dv_dfs = iv_dfs;
 
-			skills[0] = skills_data + skill1;
-			skills[1] = skills_data + skill2;
-			skills[2] = skills_data + skill3;
-			skills[3] = skills_data + skill4;
+			skills[0] = skill1;
+			skills[1] = skill2;
+			skills[2] = skill3;
+			skills[3] = skill4;
 
 			forme = formeIN;
 
@@ -188,11 +188,13 @@ namespace Pokemon_data
 				learnMove(Pokedex_data[id].skills_table[level]);
 			}
 			/*à finir (évolution)*/
+
+			return true;
 		}
 
 		bool Pokemon_owned::learnMove(unsigned int moveToLearn)
 		{
-
+			return true;
 		}
 
 }

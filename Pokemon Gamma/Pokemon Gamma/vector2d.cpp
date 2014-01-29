@@ -13,11 +13,7 @@
 #include <cmath>
 #include <utility>
 
-Vecteur2f::Vecteur2f(const float & X,const float & Y)
-{
-    x=X;
-    y=Y;
-}
+Vecteur2f::Vecteur2f(const float & X, const float & Y) : sf::Vector2f(X,Y){}
 
 float Vecteur2f::length()const
 {
@@ -36,7 +32,7 @@ Vecteur2f Vecteur2f::operator*(const float & f)
 	return Vecteur2f(x*f,y*f);
 }
 
-Point2i::Point2i(): sf::Vector2i(){}
+Point2i::Point2i() : sf::Vector2i(){}
 
 Point2i::Point2i(const int X, const int Y)
 {
@@ -72,6 +68,11 @@ Point2d::Point2d(const float X, const float Y)
 Point2d Point2i::operator*(const float & facteur) const
 {
     return Point2d(x*facteur,y*facteur);
+}
+
+Point2i Point2i::operator*(const int & facteur) const
+{
+	return Point2i(x*facteur, y*facteur);
 }
 
 Point2i Point2i::addDirection(const Direction & d) const

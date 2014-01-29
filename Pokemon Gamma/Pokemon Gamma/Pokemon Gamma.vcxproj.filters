@@ -336,6 +336,12 @@
     <ClInclude Include="tileset.h">
       <Filter>Fichiers d%27en-tête\map</Filter>
     </ClInclude>
+    <ClInclude Include="evenement.h">
+      <Filter>Fichiers d%27en-tête\map</Filter>
+    </ClInclude>
+    <ClInclude Include="map.h">
+      <Filter>Fichiers d%27en-tête\map</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="battle.cpp">
@@ -369,6 +375,9 @@
       <Filter>Fichiers sources\map</Filter>
     </ClCompile>
     <ClCompile Include="map.cpp">
+      <Filter>Fichiers sources\map</Filter>
+    </ClCompile>
+    <ClCompile Include="evenement.cpp">
       <Filter>Fichiers sources\map</Filter>
     </ClCompile>
   </ItemGroup>

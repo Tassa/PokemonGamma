@@ -12,7 +12,6 @@
 
 #include <string>
 #include "pokemon.h"
-#include "effects.h"
 #include "pokedex.hpp"
 
 
@@ -21,6 +20,8 @@
 
 namespace Pokemon_data
 {
+
+	class Effect;
 
 	enum CategorieAttaque { Physique, Speciale, Statut };
 
@@ -40,13 +41,13 @@ namespace Pokemon_data
 		bool contact;
 		unsigned int priorite;
 		std::string description;
-		Effect* effet;
+		Effect * effet;
 		float probabilityEffet;
 		bool critElevee;
 
 	};
 
-	Attaque skills_data[NB_MAX_SKILLS];
+	extern Attaque skills_data[NB_MAX_SKILLS];
 
 
 }

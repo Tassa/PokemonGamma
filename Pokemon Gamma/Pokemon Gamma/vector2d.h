@@ -41,6 +41,8 @@ class Point2i: public sf::Vector2i
 
         Point2d operator*(const float & facteur) const;
 
+		Point2i operator*(const int & facteur) const;
+
 		Point2i addDirection(const Direction & d)const;
 };
 

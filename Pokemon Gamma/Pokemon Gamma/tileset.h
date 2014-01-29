@@ -7,12 +7,16 @@
 //																																		//
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+#ifndef TILESET_H
+#define TILESET_H
+
 #include <SFML/Graphics.hpp>
 #include <string>
 #include "vector2d.h"
 #include "autotiles.h"
 
 #define MAX_AUTOTILES_PER_TILESET 7
+#define WIDTH_OF_TILESET 8
 
 class TilesetCase
 {
@@ -40,7 +44,7 @@ public:
 
 	void LoadDataFromFile(const std::string & tilesetName);
 
-	Tileset(const unsigned int & type, const std::string & name);
+	void init(const std::string & name);
 
 	~Tileset();
 
@@ -66,10 +70,11 @@ private:
 	TilesetCase** _cases;
 	Autotile autotiles[MAX_AUTOTILES_PER_TILESET];
 	bool autotilesExist[MAX_AUTOTILES_PER_TILESET];
-	unsigned int _width;
 	unsigned int _height;
 	unsigned int _resolution;
-	unsigned int _type;
 	std::string _name;
 
 };
+
+
+#endif

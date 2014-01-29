@@ -40,14 +40,14 @@ void Tileset::LoadTextureFromFile(const std::string & tilesetName)
 		std::cout<<"ERROR WITH : Tileset "+tilesetName+".png NOT FOUND"<<std::endl;
 		exit(0);
 	}
-	_resolution = _TilesetTexture.getSize().x/_width;
+	_resolution = _TilesetTexture.getSize().x/WIDTH_OF_TILESET;
 	_height = (_TilesetTexture.getSize().y/_resolution)+1;
 }
 
 void Tileset::LoadDataFromFile(const std::string & tilesetName)
 {
 	std::ifstream tilesetFile;
-	tilesetFile.open("/*à Compléter*/");
+	tilesetFile.open("Data/Tilesets/"+tilesetName+".til"); // Pas dans la version finale, mais pour les premiers tests
 	
 	std::string pictureName;
 	tilesetFile>>pictureName;
@@ -68,8 +68,8 @@ void Tileset::LoadDataFromFile(const std::string & tilesetName)
 		}
 	}
 		
-	_cases = new TilesetCase*[_width];
-	for(unsigned int i =0;i<_width;i++)
+	_cases = new TilesetCase*[WIDTH_OF_TILESET];
+	for(unsigned int i =0;i<WIDTH_OF_TILESET;i++)
 	{
 		_cases[i]=new TilesetCase[_height];
 	}
@@ -78,7 +78,7 @@ void Tileset::LoadDataFromFile(const std::string & tilesetName)
 	unsigned int autoEvent,superpositionPriority;
 	bool practic,mvG,mvD,mvH,mvB;
 
-	for(unsigned int i = 0;i<_width;i++)
+	for(unsigned int i = 0;i<WIDTH_OF_TILESET;i++)
 	{
 		for(unsigned int j = 0; j<_height+1;j++)
 		{
@@ -96,11 +96,9 @@ void Tileset::LoadDataFromFile(const std::string & tilesetName)
 	tilesetFile.close();
 }
 
-Tileset::Tileset(const unsigned int & type, const std::string & name)
+void Tileset::init(const std::string & name)
 {
-	_type = type;
 	_name = name;
-	_width = 8;
 	
 	LoadDataFromFile(name);
 	_sprite.setTexture(_TilesetTexture);
@@ -109,7 +107,7 @@ Tileset::Tileset(const unsigned int & type, const std::string & name)
 
 Tileset::~Tileset()
 {
-	for(unsigned int i =0;i<_width;i++)
+	for (unsigned int i = 0; i<WIDTH_OF_TILESET; i++)
 	{
 		delete _cases[i];
 	}
