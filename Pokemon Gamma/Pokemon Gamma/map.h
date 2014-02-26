@@ -15,9 +15,12 @@
 #include "tileset.h"
 #include "vector2d.h"
 #include "direction.h"
+#include "evenement.h"
 
 #define NB_CASE_X_VIEW 6
 #define NB_CASE_Y_VIEW 4
+
+#define NB_COUCHES 4
 
 
 typedef struct
@@ -35,13 +38,10 @@ public:
 	//ctor
 	Case();
 
-	void init(const Point2i &p1,
-		const Point2i &p2,
-		const Point2i &p3,
-		const Point2i &p4,
+	void init(const Point2i *p1,
 		const bool & practic,
 		const bool & gauche, const bool & droite, const bool & haut, const bool & bas,
-		const unsigned int & evenement, const unsigned int & autoEvenement);
+		const unsigned int & autoEvenement);
 	
 
 	bool GetPracticable() const;
@@ -51,10 +51,6 @@ public:
 	Point2i GetTilesetPos(const unsigned int & couche) const;
 
 	bool GetCoucheExist(const unsigned int & couche) const;
-
-protected:
-
-	friend Map;
 
 	VertexArrayOnTexture vertexArray[6];
 
@@ -70,7 +66,7 @@ private:
 
 
 
-class Map
+class Map : sf::Drawable
 {
 public:
 
@@ -96,7 +92,11 @@ public:
 
 
 
-	void draw(sf::RenderWindow & window, /*std::priority_queue<Character> charactersOrderedByPosition,*/const Point2i & center);
+	void draw(sf::RenderTarget &target, sf::RenderStates states) const;
+
+	bool setMainEvent(Evenement * event);
+
+	bool addEvent(Evenement * event);
 
 private:
 
@@ -119,6 +119,10 @@ private:
 	sf::Texture _backgroundTexture;
 	sf::Sprite _emptySprite;
 	sf::Sprite _sprite;
+
+	std::vector<Evenement> eventsOnMap;
+	std::vector<Evenement*> otherEvents;
+	Evenement * mainEvent;
 };
 
 #endif

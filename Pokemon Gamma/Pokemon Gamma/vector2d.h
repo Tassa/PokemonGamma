@@ -21,6 +21,7 @@ public:
     float length()const;
     Vecteur2f normalize();
 	Vecteur2f operator*(const float & f);
+	bool operator<(Vecteur2f a);
 };
 
 class Point2d;
@@ -44,6 +45,8 @@ class Point2i: public sf::Vector2i
 		Point2i operator*(const int & facteur) const;
 
 		Point2i addDirection(const Direction & d)const;
+
+		bool operator<(const Point2i  & a) const;
 };
 
 class Point2d: public sf::Vector2f

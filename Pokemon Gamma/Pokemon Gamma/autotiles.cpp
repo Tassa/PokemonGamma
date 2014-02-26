@@ -23,7 +23,7 @@ Autotile::Autotile()
 
 }
 
-	Autotile::Autotile(const std::string & fileName)
+	void Autotile::init(const std::string & fileName)
 	{
 		if(!_image->loadFromFile("Graphics/Autotiles/"+fileName))
 		{

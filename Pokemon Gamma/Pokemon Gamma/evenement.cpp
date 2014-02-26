@@ -14,12 +14,13 @@
 #include "map.h"
 #include "evenement.h"
 
-Evenement::Evenement(const std::string & filePath, const Point2i & pos) : position(pos)
+Evenement::Evenement(const std::string & filePath, const Point2i & pos,Map * m) : position(pos)
 {
+	map = m;
 	image.loadFromFile(filePath);
 	sprite.setTexture(image);
 	sprite.setTextureRect(sf::IntRect(0, 0, (int)image.getSize().x / 4, (int)image.getSize().y / 4));
-	sprite.setPosition(position*64.f);
+	sprite.setPosition(position*64.f);																	///// Escaliers !!!
 }
 
 bool Evenement::move(const Direction & d)
@@ -40,4 +41,16 @@ bool Evenement::move(const Direction & d)
 void Evenement::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
 	target.draw(sprite, states);
+}
+
+Point2i Evenement::getPosition() const
+{
+	return position;
+}
+
+bool Evenement::operator()(const Evenement &a1, const Evenement &a2) const
+{
+	//On renvoie 0 ou 1 selon que la comparaison est  
+	//vraie ou fausse  
+	return (a1.getPosition() < a2.getPosition());
 }

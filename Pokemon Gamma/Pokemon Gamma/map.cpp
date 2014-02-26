@@ -23,18 +23,14 @@
 	//ctor
 Case::Case(){}
 
-void Case::init(const Point2i &p1,
-			const Point2i &p2,
-			const Point2i &p3,
-			const Point2i &p4,
+void Case::init(const Point2i * positions,
 			const bool & practic,
 			const bool & gauche, const bool & droite, const bool & haut, const bool & bas,
-			const unsigned int & evenement, const unsigned int & autoEvenement)
+			const unsigned int & autoEvenement)
 {
-	couches[0] = p1;
-	couches[1] = p2;
-	couches[2] = p3;
-	couches[3] = p4;
+	for (int i = 0; i < NB_COUCHES; i++)
+		couches[i] = positions[i];
+
 		/*
 		event(evenement);
 		autoEvenement(autoEvenement)
@@ -66,13 +62,13 @@ bool Case::canDirection(const Direction & d) const
 
 Point2i Case::GetTilesetPos(const unsigned int & couche) const
 {
-	if (couche > 3){ exit(3); }
+	if (couche > NB_COUCHES ){ exit(3); }
 	return couches[couche];
 }
 
 bool Case::GetCoucheExist(const unsigned int & couche) const
 {
-	if(couche>3){return false;}
+	if (couche > NB_COUCHES ){return false;}
 	else{return couchesExist[couche];}
 }
 
@@ -111,15 +107,14 @@ void Map::LoadFromFile(const std::string & filePath)
 	std::ifstream mapFile;
 	mapFile.open(filePath);
 
-	mapFile>>_noMap;
+	//mapFile>>_noMap;
 	mapFile>>_nameOfMap;
-
 	mapFile>>_tileSetName;
 
 	mapFile>>_height;
 	mapFile>>_width;
 
-	mapFile>>backgroundName;
+	//mapFile>>backgroundName;
 	if(!_backgroundTexture.loadFromFile("Graphics/Panoramas/"+backgroundName+".png"))
 	{
 		if (!_backgroundTexture.loadFromFile("Graphics/Panoramas/black.png"))
@@ -138,35 +133,32 @@ void Map::LoadFromFile(const std::string & filePath)
 		_cases[i]=new Case[_height];
 	}
 
-	Point2i p1,p2,p3,p4;
+	Point2i positions[NB_COUCHES];
 	unsigned int evenement;
 
 	for(unsigned int i = 0;i<_width;i++)
 	{
 		for(unsigned int j = 0; j<_height;j++)
 		{
-			mapFile>>p1.x;
-			mapFile>>p1.y;
-			mapFile>>p2.x;
-			mapFile>>p2.y;
-			mapFile>>p3.x;
-			mapFile>>p3.y;
-			mapFile>>p4.x;
-			mapFile>>p4.y;
-			mapFile>>evenement;
+			for (unsigned int k; k < NB_COUCHES; k++)
+			{
+				mapFile >> positions[k].x;
+				mapFile >> positions[k].y;
+			}
+			
 
 
 			TilesetCase t;
-			if(p1!=Point2i())
-				{t= _tileset.GetTilesetCase(p1);  }
-			if(p2!=Point2i())
-				{t= _tileset.GetTilesetCase(p2);  }
-			if(p3!=Point2i())
-				{t= _tileset.GetTilesetCase(p3);  }
-			if(p4!=Point2i())
-				{t= _tileset.GetTilesetCase(p4);  }
+			for (unsigned int k; k < NB_COUCHES; k++)
+			{
+				if ((positions[k] != Point2i()) && (_tileset.GetTilesetCase(positions[k]).superpositionPriority < 2))
+				{
+					t = _tileset.GetTilesetCase(positions[k]);
+				}
+			}
 
-			_cases[i][j].init(p1,p2,p3,p4,t.practic,t.mvG,t.mvD,t.mvH,t.mvB,evenement,t.autoEvent); //////////////A modifier, pas correct ////////////////
+
+			_cases[i][j].init(positions,t.practic,t.mvG,t.mvD,t.mvH,t.mvB,t.autoEvent);
 		}
 	}
 	mapFile.close();
@@ -258,10 +250,10 @@ sf::Sprite Map::GetSprite(const Point2i & p,const unsigned int & couche)
 }
 
 
-void Map::draw(sf::RenderWindow & window, /*std::priority_queue<Character> charactersOrderedByPosition,*/const Point2i & center)
+void Map::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
-	int cXt=center.x-NB_CASE_X_VIEW
-	,cYt=center.y-NB_CASE_Y_VIEW;
+	int cXt=mainEvent->getPosition().x-NB_CASE_X_VIEW
+		, cYt = mainEvent->getPosition().y - NB_CASE_Y_VIEW;
 	if(cXt<=0){cXt=0;}
 	if(cYt<=0){cYt=0;}
 	int cXb=cXt+2*NB_CASE_X_VIEW,
@@ -269,11 +261,22 @@ void Map::draw(sf::RenderWindow & window, /*std::priority_queue<Character> chara
 	if((unsigned int)cXb>_width ){cXb=_width;cXt=cXb-2*NB_CASE_X_VIEW;}
 	if((unsigned int)cYb>_height){cYb=_height;cYt=cYb-2*NB_CASE_Y_VIEW;} /// Map link ?
 
-	if(_emptySprite.getTexture() != NULL)
+	std::priority_queue<Evenement> tampon;
+
+	for (unsigned int k = 0; k < eventsOnMap.size(); k++)
 	{
-		_emptySprite.setTextureRect(sf::IntRect(0,0,(int)window.getSize().x,(int)window.getSize().y));
-		window.draw(_emptySprite);
+		tampon.push(eventsOnMap[k]);
 	}
+	for (unsigned int k = 0; k < otherEvents.size(); k++)
+	{
+		tampon.push(*otherEvents[k]);
+	}
+
+	/*if(_emptySprite.getTexture() != NULL)
+	{
+		_emptySprite.setTextureRect(sf::IntRect(0,0,(int)target.getSize().x,(int)target.getSize().y));
+		target.draw(_emptySprite);
+	}*/
 
 	for(int i=cXt ; i<cXb ; i++)
 	{
@@ -281,7 +284,7 @@ void Map::draw(sf::RenderWindow & window, /*std::priority_queue<Character> chara
 		{
 			if(_cases[i][j].vertexArray[0].texture != NULL)
 			{
-			window.draw(_cases[i][j].vertexArray[0].vertices,_cases[i][j].vertexArray[0].texture);
+			target.draw(_cases[i][j].vertexArray[0].vertices,_cases[i][j].vertexArray[0].texture);
 			}
 		}
 	}
@@ -290,14 +293,13 @@ void Map::draw(sf::RenderWindow & window, /*std::priority_queue<Character> chara
 	{
 		for(int j=cYt ; j<cYb ; j++)
 		{
-			/*while( Point2i(i,j) == ( charactersOrderedByPosition.top().GetPositionI() ) )
+			while((!tampon.empty())&&( Point2i(i,j) == ( tampon.top().getPosition())))
 			{
-				window.draw(charactersOrderedByPosition.top().GetSprite());
-				charactersOrderedByPosition.pop();
-			}*/
+				target.draw(tampon.top());
+			}
 			if(_cases[i][j].vertexArray[1].texture != NULL)
 			{
-				window.draw(_cases[i][j].vertexArray[1].vertices,_cases[i][j].vertexArray[1].texture);
+				target.draw(_cases[i][j].vertexArray[1].vertices,_cases[i][j].vertexArray[1].texture);
 			}
 		}
 	}
@@ -310,7 +312,7 @@ void Map::draw(sf::RenderWindow & window, /*std::priority_queue<Character> chara
 			{
 				if(_cases[i][j].vertexArray[s].texture != NULL)
 				{
-					window.draw(_cases[i][j].vertexArray[s].vertices,_cases[i][j].vertexArray[s].texture);
+					target.draw(_cases[i][j].vertexArray[s].vertices,_cases[i][j].vertexArray[s].texture);
 				}
 			}
 		}
@@ -318,3 +320,23 @@ void Map::draw(sf::RenderWindow & window, /*std::priority_queue<Character> chara
 
 }
 
+
+bool Map::setMainEvent(Evenement * event)
+{
+	for (std::vector<Evenement *>::iterator it = otherEvents.begin(); it != otherEvents.end(); ++it)
+	{
+		if (*it == event){ mainEvent = event; return true; }
+	}
+	
+	return false;
+}
+
+bool Map::addEvent(Evenement * event)
+{
+	for (std::vector<Evenement *>::iterator it = otherEvents.begin(); it != otherEvents.end(); ++it)
+	{
+		if (*it == event){ return false; }
+	}
+	otherEvents.push_back(event);
+	return true;
+}

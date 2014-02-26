@@ -380,6 +380,9 @@
     <ClCompile Include="evenement.cpp">
       <Filter>Fichiers sources\map</Filter>
     </ClCompile>
+    <ClCompile Include="mainMap.cpp">
+      <Filter>Fichiers sources\map</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Library Include="SFML-2.1\lib\sfml-audio.lib">

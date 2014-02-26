@@ -59,7 +59,7 @@ void Tileset::LoadDataFromFile(const std::string & tilesetName)
 		tilesetFile>>autotilesFilePath;
 		if(autotilesFilePath != "N/A")
 		{
-			autotiles[a] = Autotile(autotilesFilePath);
+			autotiles[a].init(autotilesFilePath);
 			autotilesExist[a] = true;
 		}
 		else
@@ -83,13 +83,13 @@ void Tileset::LoadDataFromFile(const std::string & tilesetName)
 		for(unsigned int j = 0; j<_height+1;j++)
 		{
 
-			tilesetFile >> std::boolalpha >>practic;
-			tilesetFile >> std::boolalpha >> mvG;
-			tilesetFile >> std::boolalpha >> mvD;
-			tilesetFile >> std::boolalpha >> mvH;
-			tilesetFile >> std::boolalpha >> mvB;
-			tilesetFile>>autoEvent;
-			tilesetFile>>superpositionPriority;
+			tilesetFile >> std::noboolalpha >>practic;
+			tilesetFile >> std::noboolalpha >> mvG;
+			tilesetFile >> std::noboolalpha >> mvD;
+			tilesetFile >> std::noboolalpha >> mvH;
+			tilesetFile >> std::noboolalpha >> mvB;
+			tilesetFile >> autoEvent;
+			tilesetFile >> superpositionPriority;
 			_cases[i][j]=TilesetCase(practic,mvG,mvD,mvH,mvB,autoEvent,superpositionPriority);
 		}
 	}

@@ -32,6 +32,13 @@ Vecteur2f Vecteur2f::operator*(const float & f)
 	return Vecteur2f(x*f,y*f);
 }
 
+bool Vecteur2f::operator<(Vecteur2f a)
+{
+	if (y != a.y){ return y < a.y; }
+	else{ return x < a.x; }
+}
+
+
 Point2i::Point2i() : sf::Vector2i(){}
 
 Point2i::Point2i(const int X, const int Y)
@@ -52,12 +59,13 @@ Point2i::Point2i(const Point2d & p)
 	y = static_cast<int>(p.y);
 }
 
-/*Point2i & Point2i::operator=(const Point2i & p)
+bool Point2i::operator<(const Point2i & a) const
 {
-	this->x=p.x;
-	this->y=p.y;
-	return *this;
-}*/
+	if (y != a.y){ return y < a.y; }
+	else{ return x < a.x; }
+}
+
+
 
 Point2d::Point2d(const float X, const float Y)
 {

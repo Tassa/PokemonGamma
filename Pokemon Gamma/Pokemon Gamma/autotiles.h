@@ -24,7 +24,7 @@ public:
 
 	Autotile();
 
-	Autotile(const std::string & fileName);
+	void init(const std::string & fileName);
 
     sf::Texture* GetTexture();
 
