@@ -79,7 +79,7 @@
     <ClCompile Include="exp.cpp" />
     <ClCompile Include="attacks.cpp" />
     <ClCompile Include="effects.cpp" />
-    <ClCompile Include="mainMap.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="map.cpp" />
     <ClCompile Include="pokemon.cpp" />
     <ClCompile Include="battle.cpp" />

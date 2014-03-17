@@ -17,64 +17,66 @@
 
 #define MAX_AUTOTILES_PER_TILESET 7
 #define WIDTH_OF_TILESET 8
-
-class TilesetCase
+namespace MapEngine
 {
-public:
 
-	TilesetCase();
+	class TilesetCase
+	{
+	public:
 
-	TilesetCase(const bool &practicable,
-		const bool &mG, const bool &mD, const bool &mH, const bool &mB,
-		const unsigned int &autoEvenement,
-		const unsigned int &superposition);
+		TilesetCase();
 
-	unsigned int autoEvent, superpositionPriority;
-	bool practic, mvG, mvD, mvH, mvB;
+		TilesetCase(const bool &practicable,
+			const bool &mG, const bool &mD, const bool &mH, const bool &mB,
+			const unsigned int &autoEvenement,
+			const unsigned int &superposition);
 
-};
+		unsigned int autoEvent, superpositionPriority;
+		bool practic, mvG, mvD, mvH, mvB;
 
-class Tileset
-{
-public:
+	};
 
-	Tileset();
+	class Tileset
+	{
+	public:
 
-	void LoadTextureFromFile(const std::string & tilesetName);
+		Tileset();
 
-	void LoadDataFromFile(const std::string & tilesetName);
+		void LoadTextureFromFile(const std::string & tilesetName);
 
-	void init(const std::string & name);
+		void LoadDataFromFile(const std::string & tilesetName);
 
-	~Tileset();
+		void init(const std::string & name);
 
-	sf::Sprite GetSprite(const unsigned int & x, const unsigned int & y);
+		~Tileset();
 
-	sf::Sprite GetSprite(const Point2i & p);
+		sf::Sprite GetSprite(const unsigned int & x, const unsigned int & y);
 
-	Autotile* GetAutotile(const Point2i & p);
+		sf::Sprite GetSprite(const Point2i & p);
 
-	bool GetAutotileExist(const Point2i & p) const;
+		Autotile* GetAutotile(const Point2i & p);
 
-	TilesetCase GetTilesetCase(const unsigned int & x, const unsigned int & y) const;
+		bool GetAutotileExist(const Point2i & p) const;
 
-	TilesetCase GetTilesetCase(const Point2i & p) const;
+		TilesetCase GetTilesetCase(const unsigned int & x, const unsigned int & y) const;
 
-	sf::Texture* GetTexture();
+		TilesetCase GetTilesetCase(const Point2i & p) const;
 
-
-private:
-
-	sf::Texture _TilesetTexture;
-	sf::Sprite _sprite;
-	TilesetCase** _cases;
-	Autotile autotiles[MAX_AUTOTILES_PER_TILESET];
-	bool autotilesExist[MAX_AUTOTILES_PER_TILESET];
-	unsigned int _height;
-	unsigned int _resolution;
-	std::string _name;
-
-};
+		sf::Texture* GetTexture();
 
 
+	private:
+
+		sf::Texture _TilesetTexture;
+		sf::Sprite _sprite;
+		TilesetCase** _cases;
+		Autotile autotiles[MAX_AUTOTILES_PER_TILESET];
+		bool autotilesExist[MAX_AUTOTILES_PER_TILESET];
+		unsigned int _height;
+		unsigned int _resolution;
+		std::string _name;
+
+	};
+
+}
 #endif

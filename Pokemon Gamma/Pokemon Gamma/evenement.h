@@ -13,32 +13,36 @@
 
 #include "vector2d.h"
 #include "direction.h"
-#include "map.h"
+//#include "map.h"
 
-
-enum TypeTrigger{Action,Auto,ContactHeros,ContactEvent,ParalleleProcess};
-
-class Evenement : public sf::Drawable
+namespace MapEngine
 {
 
-public :
+	enum TypeTrigger{ Action, Auto, ContactHeros, ContactEvent, ParalleleProcess };
 
-	Evenement(const std::string & filePath,const Point2i & pos,Map * m);
-	bool move(const Direction & d);
-	void draw(sf::RenderTarget &target, sf::RenderStates states) const;
-	Point2i getPosition() const;
-	bool operator()(const Evenement &a1, const Evenement &a2) const;
+	class Map;
 
-protected :
+	class Evenement : public sf::Drawable
+	{
 
-	Point2i position;
-	TypeTrigger trigger;
-	bool animated;
-	bool animatedInStop;
-	sf::Texture image;
-	sf::Sprite sprite;
-	Map* map;
+	public:
 
-};
+		Evenement(const char * filePath, const Point2i & pos, Map * m);
+		bool move(const Direction & d);
+		void draw(sf::RenderTarget &target, sf::RenderStates states) const;
+		Point2i getPosition() const;
+		bool operator<(const Evenement &a1) const;
 
+	protected:
+
+		Point2i position;
+		TypeTrigger trigger;
+		bool animated;
+		bool animatedInStop;
+		sf::Texture image;
+		sf::Sprite sprite;
+		Map* map;
+
+	};
+}
 #endif

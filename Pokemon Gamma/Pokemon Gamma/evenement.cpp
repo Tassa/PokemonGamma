@@ -14,43 +14,47 @@
 #include "map.h"
 #include "evenement.h"
 
-Evenement::Evenement(const std::string & filePath, const Point2i & pos,Map * m) : position(pos)
+namespace MapEngine
 {
-	map = m;
-	image.loadFromFile(filePath);
-	sprite.setTexture(image);
-	sprite.setTextureRect(sf::IntRect(0, 0, (int)image.getSize().x / 4, (int)image.getSize().y / 4));
-	sprite.setPosition(position*64.f);																	///// Escaliers !!!
-}
 
-bool Evenement::move(const Direction & d)
-{
-	if (map->CanMove(d, position))
+	Evenement::Evenement(const char * filePath, const Point2i & pos, Map * m) : position(pos)
 	{
-		position.addDirection(d);
-		sprite.setPosition(position*64.f);
-		return true;
+		map = m;
+		image.loadFromFile(filePath);
+		sprite.setTexture(image);
+		sprite.setTextureRect(sf::IntRect(0, 0, (int)image.getSize().x / 4, (int)image.getSize().y / 4));
+		sprite.setPosition(position*64.f);																	///// Escaliers !!!
 	}
-	else
+
+	bool Evenement::move(const Direction & d)
 	{
-		return false;
+		if (map->CanMove(d, position))
+		{
+			position.addDirection(d);
+			sprite.setPosition(position*64.f);
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
-}
 
 
-void Evenement::draw(sf::RenderTarget &target, sf::RenderStates states) const
-{
-	target.draw(sprite, states);
-}
+	void Evenement::draw(sf::RenderTarget &target, sf::RenderStates states) const
+	{
+		target.draw(sprite, states);
+	}
 
-Point2i Evenement::getPosition() const
-{
-	return position;
-}
+	Point2i Evenement::getPosition() const
+	{
+		return position;
+	}
 
-bool Evenement::operator()(const Evenement &a1, const Evenement &a2) const
-{
-	//On renvoie 0 ou 1 selon que la comparaison est  
-	//vraie ou fausse  
-	return (a1.getPosition() < a2.getPosition());
+	bool Evenement::operator<(const Evenement &a1) const
+	{
+		//On renvoie 0 ou 1 selon que la comparaison est  
+		//vraie ou fausse  
+		return (getPosition() < a1.getPosition());
+	}
 }

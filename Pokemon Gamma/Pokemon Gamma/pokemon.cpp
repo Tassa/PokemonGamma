@@ -15,7 +15,7 @@
 
 namespace Pokemon_data
 {
-
+	static Pokemon_Data_Entry Pokedex_data[NB_MAX_POKEMON];
 		Pokemon::Pokemon(const unsigned int & idIN,
 			const bool & shineyIN, const unsigned int & levelIN,
 			const NaturePokemon & natureIN,

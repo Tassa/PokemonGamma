@@ -12,7 +12,7 @@
 
 namespace sfUse
 {
-    void Sprite2VertexArray(const sf::Sprite & sprite,sf::VertexArray & vertices);
+	void Sprite2VertexArray(const sf::Sprite & sprite, sf::VertexArray & vertices);
 }
 
 #endif

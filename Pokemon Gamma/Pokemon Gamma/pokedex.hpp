@@ -26,6 +26,7 @@ namespace Pokemon_data
 	{
 
 	public :
+
 		std::string name;														//Nom de l'espèce
 		TypePokemon type1;														//Type primaire de l'espèce
 		TypePokemon type2;														//Type secondaire de l'espèce
@@ -48,7 +49,7 @@ namespace Pokemon_data
 		bool capturee;
 	};
 
-	extern Pokemon_Data_Entry Pokedex_data[NB_MAX_POKEMON];
+	
 
 }
 #endif

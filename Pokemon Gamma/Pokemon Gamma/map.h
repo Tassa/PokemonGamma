@@ -22,107 +22,109 @@
 
 #define NB_COUCHES 4
 
-
-typedef struct
+namespace MapEngine
 {
-	sf::VertexArray vertices;
-	sf::Texture* texture;
-}VertexArrayOnTexture;
 
-class Map;
+	typedef struct
+	{
+		sf::VertexArray vertices;
+		sf::Texture* texture;
+	}VertexArrayOnTexture;
 
-class Case
-{
-public:
+	class Map;
 
-	//ctor
-	Case();
+	class Case
+	{
+	public:
 
-	void init(const Point2i *p1,
-		const bool & practic,
-		const bool & gauche, const bool & droite, const bool & haut, const bool & bas,
-		const unsigned int & autoEvenement);
-	
+		//ctor
+		Case();
 
-	bool GetPracticable() const;
-
-	bool canDirection(const Direction & d) const;
-
-	Point2i GetTilesetPos(const unsigned int & couche) const;
-
-	bool GetCoucheExist(const unsigned int & couche) const;
-
-	VertexArrayOnTexture vertexArray[6];
-
-private:
-
-	Point2i couches[4];
-	bool couchesExist[4];
-
-	bool practicable;
-	bool mvtDir[4];
-};
+		void init(const Point2i *p1,
+			const bool & practic,
+			const bool & gauche, const bool & droite, const bool & haut, const bool & bas,
+			const unsigned int & autoEvenement);
 
 
+		bool GetPracticable() const;
 
+		bool canDirection(const Direction & d) const;
 
-class Map : sf::Drawable
-{
-public:
+		Point2i GetTilesetPos(const unsigned int & couche) const;
 
-	Map(const std::string & filePath);
+		bool GetCoucheExist(const unsigned int & couche) const;
 
-	~Map();
+		VertexArrayOnTexture vertexArray[6];
 
-	bool CanMove(const Direction & d1, const Point2i & pos) const;
+	private:
 
-	void LoadFromFile(const std::string & filePath);
+		Point2i couches[4];
+		bool couchesExist[4];
 
-	void updateSprites();
-
-	Case GetCase(const Point2i & p) const;
-
-	Tileset * GetTileset();
-
-	bool GetPracticable(const Point2i & p) const;
-
-	sf::Sprite GetSprite(const unsigned int x, const unsigned int y, const unsigned int & couche);
-
-	sf::Sprite GetSprite(const Point2i & p, const unsigned int & couche);
+		bool practicable;
+		bool mvtDir[4];
+	};
 
 
 
-	void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 
-	bool setMainEvent(Evenement * event);
+	class Map : public sf::Drawable
+	{
+	public:
 
-	bool addEvent(Evenement * event);
+		Map(const std::string & filePath);
 
-private:
+		~Map();
+
+		bool CanMove(const Direction & d1, const Point2i & pos) const;
+
+		void LoadFromFile(const std::string & filePath);
+
+		void updateSprites();
+
+		Case GetCase(const Point2i & p) const;
+
+		Tileset * GetTileset();
+
+		bool GetPracticable(const Point2i & p) const;
+
+		sf::Sprite GetSprite(const unsigned int x, const unsigned int y, const unsigned int & couche);
+
+		sf::Sprite GetSprite(const Point2i & p, const unsigned int & couche);
 
 
-	unsigned int _noMap;
-	std::string _dateOfCreation;
-	std::string _nameOfMap;
-	std::string _madeBy;
 
-	unsigned int _typeOf;
-	std::string _tileSetName;
-	Tileset _tileset;
+		void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 
-	unsigned int _height;
-	unsigned int _width;
-	Case** _cases;
+		bool setMainEvent(Evenement * event);
 
-	sf::Vector2f _resolution;
+		bool addEvent(Evenement * event);
 
-	sf::Texture _backgroundTexture;
-	sf::Sprite _emptySprite;
-	sf::Sprite _sprite;
+	private:
 
-	std::vector<Evenement> eventsOnMap;
-	std::vector<Evenement*> otherEvents;
-	Evenement * mainEvent;
-};
 
+		unsigned int _noMap;
+		std::string _dateOfCreation;
+		std::string _nameOfMap;
+		std::string _madeBy;
+
+		unsigned int _typeOf;
+		std::string _tileSetName;
+		Tileset _tileset;
+
+		unsigned int _height;
+		unsigned int _width;
+		Case** _cases;
+
+		sf::Vector2f _resolution;
+
+		sf::Texture _backgroundTexture;
+		sf::Sprite _emptySprite;
+		sf::Sprite _sprite;
+
+		std::vector<Evenement> eventsOnMap;
+		std::vector<Evenement*> otherEvents;
+		Evenement * mainEvent;
+	};
+}
 #endif

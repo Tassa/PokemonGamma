@@ -7,25 +7,28 @@
 //																																		//
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #include "direction.h"
-
-Direction directionOpposee(const Direction & d)
+namespace MapEngine
 {
-	switch (d)
+
+	Direction directionOpposee(const Direction & d)
 	{
-		case Gauche :
+		switch (d)
+		{
+		case Gauche:
 			return Droite;
-		break;
-		case Droite :
+			break;
+		case Droite:
 			return Gauche;
-		break;
-		case Haut :
+			break;
+		case Haut:
 			return Bas;
-		break;
-		case Bas :
+			break;
+		case Bas:
 			return Haut;
-		break;
+			break;
 		default:
 			return Aucune;
-		break;
+			break;
+		}
 	}
 }

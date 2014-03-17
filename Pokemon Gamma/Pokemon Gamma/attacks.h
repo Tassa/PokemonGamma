@@ -29,6 +29,7 @@ namespace Pokemon_data
 	{
 	public :
 		Attaque();
+		static Attaque skills_data[NB_MAX_SKILLS];
 	protected :
 		std::string name;
 		TypePokemon type;								//Type de l'attaque
@@ -46,9 +47,6 @@ namespace Pokemon_data
 		bool critElevee;
 
 	};
-
-	extern Attaque skills_data[NB_MAX_SKILLS];
-
 
 }
 
