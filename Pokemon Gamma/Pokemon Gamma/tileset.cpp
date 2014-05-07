@@ -45,7 +45,7 @@ namespace MapEngine
 			std::cout << "ERROR WITH : Tileset " + tilesetName + ".png NOT FOUND" << std::endl;
 			exit(0);
 		}
-		_resolution = _TilesetTexture.getSize().x / WIDTH_OF_TILESET;
+		_resolution = _TilesetTexture.getSize().x;
 		_height = (_TilesetTexture.getSize().y / _resolution) + 1;
 	}
 

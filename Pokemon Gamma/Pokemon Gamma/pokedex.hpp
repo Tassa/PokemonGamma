@@ -18,9 +18,11 @@
 
 namespace Pokemon_data
 {
-	enum TypePokemon { Inconnu, Normal, Feu, Eau, Electrique, Plante, Glace, Combat, Poison, Sol, Vol, Psy, Insecte, Roche, Spectre, Dragon, Acier };
+	enum TypePokemon { Inconnu, Normal, Feu, Eau, Electrique, Plante, Glace, Combat, Poison, Sol, Vol, Psy, Insecte, Roche, Spectre, Dragon, Acier 
+		,NBTypesPokemon};
 
-	enum NaturePokemon {};
+	enum NaturePokemon {Amical
+		, NBTypesPokemon };
 
 	class Pokemon_Data_Entry
 	{
@@ -44,6 +46,8 @@ namespace Pokemon_data
 
 		unsigned int probability_female;										//Probabilité que ce pokemon soit une femelle
 		unsigned int capture_rate;												//Probabilité de capturer ce pokemon avec une pokeball
+
+		CourbeXP xp_rate;
 
 		bool vu;
 		bool capturee;
