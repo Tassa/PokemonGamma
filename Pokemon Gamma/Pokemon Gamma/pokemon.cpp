@@ -163,7 +163,7 @@ namespace Pokemon_data
 			}
 			else
 			{
-				//write(/*Attaque Echoué*/);
+				//write(/*Attaque Echouï¿½*/);
 			}
 		}
 
@@ -187,7 +187,7 @@ namespace Pokemon_data
 			{
 				learnMove(Pokedex_data[id].skills_table[level]);
 			}
-			/*à finir (évolution)*/
+			/*ï¿½ finir (ï¿½volution)*/
 
 			return true;
 		}
@@ -198,5 +198,4 @@ namespace Pokemon_data
 		}
 
 }
-
 
